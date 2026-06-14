@@ -1,0 +1,43 @@
+# Stellt die Kasse automatisch als Webseite über GitHub Pages bereit.
+# Läuft bei jedem Push auf "main" und aktiviert GitHub Pages selbständig.
+name: Deploy zu GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# Rechte, die der Deploy braucht.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Es soll immer nur ein Deploy gleichzeitig laufen.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      - name: GitHub Pages einrichten (aktiviert Pages automatisch)
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Seite als Artefakt verpacken (gesamtes Projekt)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Auf GitHub Pages veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4
