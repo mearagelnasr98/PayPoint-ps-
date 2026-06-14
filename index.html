@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PayPoint Kasse – Gastronomie</title>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">☕</span>
+      <span class="brand-name">PayPoint Kasse</span>
+    </div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-view="kasse">Kasse</button>
+      <button class="tab-btn" data-view="umsatz">Tagesumsatz</button>
+      <button class="tab-btn" data-view="verwaltung">Verwaltung</button>
+    </nav>
+    <div class="clock" id="clock">--:--</div>
+  </header>
+
+  <!-- ===================== KASSE ===================== -->
+  <main id="view-kasse" class="view active">
+    <section class="menu-panel">
+      <div class="table-row" id="table-row"><!-- Tische --></div>
+      <div class="category-row" id="category-row"><!-- Kategorien --></div>
+      <div class="product-grid" id="product-grid"><!-- Produkte --></div>
+    </section>
+
+    <aside class="order-panel">
+      <div class="order-head">
+        <h2 id="order-title">Bestellung</h2>
+        <span class="order-table" id="order-table-label">Kein Tisch</span>
+      </div>
+      <div class="order-items" id="order-items">
+        <p class="empty-hint">Tippe links auf Produkte, um sie hinzuzufügen.</p>
+      </div>
+      <div class="order-summary">
+        <div class="sum-line"><span>Zwischensumme</span><span id="sum-net">0,00 €</span></div>
+        <div class="sum-line"><span>MwSt.</span><span id="sum-tax">0,00 €</span></div>
+        <div class="sum-line total"><span>Gesamt</span><span id="sum-total">0,00 €</span></div>
+      </div>
+      <div class="order-actions">
+        <button class="btn btn-ghost" id="btn-clear">Leeren</button>
+        <button class="btn btn-pay" id="btn-pay" disabled>Bezahlen</button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ===================== TAGESUMSATZ ===================== -->
+  <main id="view-umsatz" class="view">
+    <div class="report">
+      <div class="report-head">
+        <h2>Tagesumsatz</h2>
+        <div class="report-controls">
+          <span id="report-date"></span>
+          <button class="btn btn-ghost" id="btn-export">Als CSV exportieren</button>
+          <button class="btn btn-danger" id="btn-reset-day">Tag abschließen / zurücksetzen</button>
+        </div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi"><span class="kpi-label">Umsatz gesamt</span><span class="kpi-value" id="kpi-total">0,00 €</span></div>
+        <div class="kpi"><span class="kpi-label">Bezahlungen</span><span class="kpi-value" id="kpi-count">0</span></div>
+        <div class="kpi"><span class="kpi-label">Bar</span><span class="kpi-value" id="kpi-cash">0,00 €</span></div>
+        <div class="kpi"><span class="kpi-label">Karte</span><span class="kpi-value" id="kpi-card">0,00 €</span></div>
+      </div>
+      <table class="sales-table">
+        <thead><tr><th>Zeit</th><th>Tisch</th><th>Artikel</th><th>Zahlart</th><th class="right">Betrag</th></tr></thead>
+        <tbody id="sales-body"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- ===================== VERWALTUNG ===================== -->
+  <main id="view-verwaltung" class="view">
+    <div class="admin">
+      <h2>Speisekarte verwalten</h2>
+      <p class="admin-hint">Hier kannst du Produkte hinzufügen, ändern oder löschen. Änderungen werden automatisch gespeichert.</p>
+      <form class="admin-form" id="admin-form">
+        <input type="text" id="f-name" placeholder="Name (z.B. Cappuccino)" required />
+        <input type="number" id="f-price" placeholder="Preis €" step="0.01" min="0" required />
+        <select id="f-category"></select>
+        <select id="f-tax">
+          <option value="19">19% MwSt.</option>
+          <option value="7">7% MwSt.</option>
+        </select>
+        <button class="btn btn-pay" type="submit">Hinzufügen</button>
+      </form>
+      <div class="admin-list" id="admin-list"></div>
+      <div class="admin-danger">
+        <button class="btn btn-danger" id="btn-reset-menu">Speisekarte auf Standard zurücksetzen</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== ZAHL-DIALOG ===================== -->
+  <div class="modal-backdrop" id="pay-modal">
+    <div class="modal">
+      <h2>Bezahlen</h2>
+      <div class="pay-total">Zu zahlen: <strong id="pay-total-amount">0,00 €</strong></div>
+      <div class="pay-methods">
+        <button class="paymethod active" data-method="bar">💶 Bar</button>
+        <button class="paymethod" data-method="karte">💳 Karte</button>
+      </div>
+      <div class="cash-area" id="cash-area">
+        <label>Gegeben (€)</label>
+        <input type="number" id="cash-given" step="0.01" min="0" inputmode="decimal" />
+        <div class="quick-cash" id="quick-cash"></div>
+        <div class="change-line">Rückgeld: <strong id="cash-change">0,00 €</strong></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="btn-pay-cancel">Abbrechen</button>
+        <button class="btn btn-pay" id="btn-pay-confirm">Zahlung abschließen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== BON / QUITTUNG ===================== -->
+  <div class="modal-backdrop" id="receipt-modal">
+    <div class="modal receipt-modal">
+      <div class="receipt" id="receipt"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="btn-receipt-print">Drucken</button>
+        <button class="btn btn-pay" id="btn-receipt-close">Neue Bestellung</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/data.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
