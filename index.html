@@ -2,20 +2,283 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>PayPoint Kasse – Gastronomie</title>
-  <link rel="stylesheet" href="src/styles.css" />
+  <style>
+/* ===== PayPoint Kasse – Styles ===== */
+:root {
+  --bg: #0f1729;
+  --panel: #1b2538;
+  --panel-2: #243149;
+  --line: #324158;
+  --text: #e8edf6;
+  --muted: #93a1b9;
+  --accent: #3b82f6;
+  --accent-2: #2563eb;
+  --green: #16a34a;
+  --green-2: #15803d;
+  --red: #dc2626;
+  --shadow: 0 6px 20px rgba(0,0,0,.25);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---- Topbar ---- */
+.topbar {
+  display: flex; align-items: center; gap: 24px;
+  padding: 10px 18px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+.logo { font-size: 24px; }
+.tabs { display: flex; gap: 8px; margin-left: 8px; }
+.tab-btn {
+  background: transparent; color: var(--muted);
+  border: none; padding: 8px 16px; border-radius: 8px;
+  font-size: 15px; cursor: pointer; font-weight: 600;
+}
+.tab-btn:hover { background: var(--panel-2); color: var(--text); }
+.tab-btn.active { background: var(--accent); color: #fff; }
+.clock { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 15px; }
+
+/* ---- Views ---- */
+.view { display: none; flex: 1; overflow: hidden; }
+.view.active { display: flex; }
+
+/* ---- Kasse layout ---- */
+#view-kasse { gap: 0; }
+.menu-panel { flex: 1; display: flex; flex-direction: column; padding: 14px; overflow: hidden; }
+.order-panel {
+  width: 360px; background: var(--panel);
+  border-left: 1px solid var(--line);
+  display: flex; flex-direction: column; padding: 14px;
+}
+
+/* Tische */
+.table-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; }
+.table-chip {
+  flex: 0 0 auto; padding: 8px 14px; border-radius: 999px;
+  background: var(--panel-2); border: 1px solid var(--line);
+  color: var(--text); cursor: pointer; font-weight: 600; font-size: 14px;
+}
+.table-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Kategorien */
+.category-row { display: flex; gap: 8px; margin: 6px 0 12px; flex-wrap: wrap; }
+.cat-btn {
+  padding: 8px 14px; border-radius: 8px; cursor: pointer;
+  background: var(--panel-2); border: 1px solid var(--line);
+  color: var(--text); font-weight: 600; font-size: 14px;
+}
+.cat-btn.active { background: var(--accent-2); border-color: var(--accent-2); }
+
+/* Produkte */
+.product-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px; overflow-y: auto; padding-right: 4px; align-content: start;
+}
+.product-card {
+  background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: 12px; padding: 14px 12px; cursor: pointer;
+  display: flex; flex-direction: column; gap: 8px; min-height: 90px;
+  transition: transform .05s ease, border-color .15s ease;
+}
+.product-card:hover { border-color: var(--accent); }
+.product-card:active { transform: scale(.97); }
+.product-card .p-name { font-weight: 600; font-size: 15px; line-height: 1.25; }
+.product-card .p-price { margin-top: auto; color: var(--muted); font-weight: 700; }
+
+/* ---- Order panel ---- */
+.order-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.order-head h2 { margin: 0; font-size: 18px; }
+.order-table { color: var(--muted); font-size: 14px; font-weight: 600; }
+.order-items { flex: 1; overflow-y: auto; margin: 6px 0; }
+.empty-hint { color: var(--muted); font-size: 14px; text-align: center; margin-top: 30px; }
+.order-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 0; border-bottom: 1px solid var(--line);
+}
+.oi-name { flex: 1; font-size: 14px; }
+.oi-name small { display: block; color: var(--muted); }
+.qty-ctrl { display: flex; align-items: center; gap: 6px; }
+.qty-btn {
+  width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--panel-2); color: var(--text); font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.qty-num { min-width: 20px; text-align: center; font-weight: 700; }
+.oi-total { width: 64px; text-align: right; font-weight: 700; }
+
+.order-summary { padding: 10px 0; border-top: 2px solid var(--line); }
+.sum-line { display: flex; justify-content: space-between; padding: 3px 0; color: var(--muted); }
+.sum-line.total { color: var(--text); font-size: 20px; font-weight: 800; padding-top: 8px; }
+
+.order-actions { display: flex; gap: 10px; }
+
+/* ---- Buttons ---- */
+.btn {
+  border: none; border-radius: 10px; padding: 14px 16px;
+  font-size: 16px; font-weight: 700; cursor: pointer; flex: 1;
+}
+.btn-pay { background: var(--green); color: #fff; }
+.btn-pay:hover { background: var(--green-2); }
+.btn-pay:disabled { background: #3a4a3f; color: #8aa593; cursor: not-allowed; }
+.btn-ghost { background: var(--panel-2); color: var(--text); border: 1px solid var(--line); }
+.btn-ghost:hover { background: var(--line); }
+.btn-danger { background: var(--red); color: #fff; }
+.btn-danger:hover { filter: brightness(1.1); }
+
+/* ---- Tagesumsatz ---- */
+.report { flex: 1; padding: 18px 24px; overflow-y: auto; width: 100%; }
+.report-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.report-head h2 { margin: 0; }
+.report-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+#report-date { color: var(--muted); }
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.kpi-label { display: block; color: var(--muted); font-size: 13px; }
+.kpi-value { display: block; font-size: 24px; font-weight: 800; margin-top: 4px; }
+.sales-table { width: 100%; border-collapse: collapse; }
+.sales-table th, .sales-table td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+.sales-table th { color: var(--muted); font-size: 13px; }
+.sales-table .right { text-align: right; }
+.sales-table td.right { text-align: right; font-weight: 700; }
+
+/* ---- Verwaltung ---- */
+.admin { flex: 1; padding: 18px 24px; overflow-y: auto; width: 100%; max-width: 900px; }
+.admin h2 { margin-top: 0; }
+.admin-hint { color: var(--muted); }
+.admin-form { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+.admin-form input, .admin-form select {
+  padding: 12px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--panel-2); color: var(--text); font-size: 15px;
+}
+.admin-form #f-name { flex: 1; min-width: 180px; }
+.admin-form #f-price { width: 110px; }
+.admin-form .btn { flex: 0 0 auto; }
+.admin-list { display: flex; flex-direction: column; gap: 8px; }
+.admin-item {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 14px;
+}
+.admin-item .ai-name { flex: 1; font-weight: 600; }
+.admin-item .ai-meta { color: var(--muted); font-size: 13px; }
+.admin-item .ai-del {
+  background: transparent; border: 1px solid var(--red); color: #ff8a8a;
+  border-radius: 8px; padding: 6px 12px; cursor: pointer; font-weight: 600;
+}
+.admin-danger { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); }
+.admin-danger .btn { flex: 0 0 auto; }
+
+/* ---- Einstellungen ---- */
+.settings { flex: 1; padding: 18px 24px; overflow-y: auto; width: 100%; max-width: 640px; }
+.settings h2 { margin-top: 0; }
+.settings label { display: block; color: var(--muted); margin: 14px 0 6px; font-weight: 600; }
+.settings input {
+  width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--panel-2); color: var(--text); font-size: 15px;
+}
+
+/* ---- Modals ---- */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,.6);
+  display: none; align-items: center; justify-content: center; z-index: 50; padding: 16px;
+}
+.modal-backdrop.show { display: flex; }
+.modal {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+  padding: 22px; width: 420px; max-width: 100%; box-shadow: var(--shadow);
+  max-height: 92vh; overflow-y: auto;
+}
+.modal h2 { margin: 0 0 12px; }
+.pay-total { font-size: 18px; margin-bottom: 14px; }
+.pay-total strong { font-size: 22px; }
+.pay-methods { display: flex; gap: 10px; margin-bottom: 14px; }
+.paymethod {
+  flex: 1; padding: 16px; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: 700;
+  background: var(--panel-2); border: 2px solid var(--line); color: var(--text);
+}
+.paymethod.active { border-color: var(--accent); background: var(--accent-2); }
+.cash-area { margin-bottom: 14px; }
+.cash-area label { display: block; color: var(--muted); margin-bottom: 6px; }
+.cash-area input {
+  width: 100%; padding: 14px; font-size: 20px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--panel-2); color: var(--text);
+}
+.quick-cash { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+.quick-cash button {
+  padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--panel-2); color: var(--text); cursor: pointer; font-weight: 600;
+}
+.change-line { font-size: 18px; margin-top: 8px; }
+.change-line strong { color: var(--green); }
+.modal-actions { display: flex; gap: 10px; margin-top: 8px; }
+
+/* ---- Bon ---- */
+.receipt-modal { width: 320px; }
+.receipt {
+  background: #fff; color: #111; font-family: "Courier New", monospace;
+  padding: 16px; border-radius: 6px; font-size: 13px; line-height: 1.5;
+}
+.receipt h3 { text-align: center; margin: 0 0 4px; }
+.receipt .r-center { text-align: center; }
+.receipt .r-line { border-top: 1px dashed #999; margin: 8px 0; }
+.receipt .r-row { display: flex; justify-content: space-between; }
+.receipt .r-total { font-weight: 700; font-size: 15px; }
+
+/* ---- Tablet ---- */
+@media (max-width: 760px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- Handy: Panels untereinander ---- */
+@media (max-width: 640px) {
+  .topbar { gap: 8px; padding: 8px 10px; }
+  .brand-name { display: none; }
+  .clock { display: none; }
+  .tab-btn { padding: 8px 12px; font-size: 14px; }
+  #view-kasse { flex-direction: column; }
+  .menu-panel { padding: 10px; }
+  .order-panel {
+    width: 100%; border-left: none; border-top: 2px solid var(--line);
+    max-height: 46vh; padding: 10px;
+  }
+  .product-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+  .product-card { min-height: 74px; padding: 10px; }
+  .report, .admin, .settings { padding: 14px; }
+}
+
+/* ---- Druck: nur den Bon zeigen ---- */
+@media print {
+  body * { visibility: hidden; }
+  #receipt, #receipt * { visibility: visible; }
+  #receipt { position: absolute; left: 0; top: 0; width: 100%; }
+}
+  </style>
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
       <span class="logo">☕</span>
-      <span class="brand-name">PayPoint Kasse</span>
+      <span class="brand-name" id="brand-name">PayPoint Kasse</span>
     </div>
     <nav class="tabs">
       <button class="tab-btn active" data-view="kasse">Kasse</button>
       <button class="tab-btn" data-view="umsatz">Tagesumsatz</button>
       <button class="tab-btn" data-view="verwaltung">Verwaltung</button>
+      <button class="tab-btn" data-view="einstellungen">Einstellungen</button>
     </nav>
     <div class="clock" id="clock">--:--</div>
   </header>
@@ -23,9 +286,9 @@
   <!-- ===================== KASSE ===================== -->
   <main id="view-kasse" class="view active">
     <section class="menu-panel">
-      <div class="table-row" id="table-row"><!-- Tische --></div>
-      <div class="category-row" id="category-row"><!-- Kategorien --></div>
-      <div class="product-grid" id="product-grid"><!-- Produkte --></div>
+      <div class="table-row" id="table-row"></div>
+      <div class="category-row" id="category-row"></div>
+      <div class="product-grid" id="product-grid"></div>
     </section>
 
     <aside class="order-panel">
@@ -34,7 +297,7 @@
         <span class="order-table" id="order-table-label">Kein Tisch</span>
       </div>
       <div class="order-items" id="order-items">
-        <p class="empty-hint">Tippe links auf Produkte, um sie hinzuzufügen.</p>
+        <p class="empty-hint">Tippe auf Produkte, um sie hinzuzufügen.</p>
       </div>
       <div class="order-summary">
         <div class="sum-line"><span>Zwischensumme</span><span id="sum-net">0,00 €</span></div>
@@ -94,6 +357,19 @@
     </div>
   </main>
 
+  <!-- ===================== EINSTELLUNGEN ===================== -->
+  <main id="view-einstellungen" class="view">
+    <div class="settings">
+      <h2>Einstellungen</h2>
+      <p class="admin-hint">Diese Angaben erscheinen oben auf dem Kassenbon.</p>
+      <label for="s-shopname">Name deines Cafés</label>
+      <input type="text" id="s-shopname" placeholder="z.B. Café Sonnenschein" />
+      <label for="s-shopaddr">Adresse / Zeile 2 (optional)</label>
+      <input type="text" id="s-shopaddr" placeholder="z.B. Hauptstraße 1, 10115 Berlin" />
+      <div style="margin-top:18px"><button class="btn btn-pay" id="btn-save-settings" style="flex:0 0 auto">Speichern</button></div>
+    </div>
+  </main>
+
   <!-- ===================== ZAHL-DIALOG ===================== -->
   <div class="modal-backdrop" id="pay-modal">
     <div class="modal">
@@ -127,7 +403,446 @@
     </div>
   </div>
 
-  <script src="src/data.js"></script>
-  <script src="src/app.js"></script>
+  <script>
+/* ============================================================
+ * PayPoint Kasse – Daten + Logik (alles in einer Datei)
+ * Läuft komplett lokal im Browser; Daten im localStorage.
+ * ============================================================ */
+"use strict";
+
+/* ---------- Standard-Speisekarte ---------- */
+const DEFAULT_CATEGORIES = [
+  { id: "heiss",   name: "Heißgetränke",     icon: "☕" },
+  { id: "kalt",    name: "Kaltgetränke",     icon: "🥤" },
+  { id: "speisen", name: "Speisen",          icon: "🥪" },
+  { id: "kuchen",  name: "Kuchen & Dessert", icon: "🍰" },
+];
+const DEFAULT_PRODUCTS = [
+  { id: "p1",  name: "Espresso",         price: 2.20, category: "heiss",   taxRate: 19 },
+  { id: "p2",  name: "Cappuccino",       price: 3.40, category: "heiss",   taxRate: 19 },
+  { id: "p3",  name: "Latte Macchiato",  price: 3.80, category: "heiss",   taxRate: 19 },
+  { id: "p4",  name: "Café Crème",       price: 2.80, category: "heiss",   taxRate: 19 },
+  { id: "p5",  name: "Heiße Schokolade", price: 3.60, category: "heiss",   taxRate: 19 },
+  { id: "p6",  name: "Tee",              price: 2.90, category: "heiss",   taxRate: 19 },
+  { id: "p7",  name: "Mineralwasser",    price: 2.50, category: "kalt",    taxRate: 19 },
+  { id: "p8",  name: "Apfelschorle",     price: 3.20, category: "kalt",    taxRate: 19 },
+  { id: "p9",  name: "Cola",             price: 3.20, category: "kalt",    taxRate: 19 },
+  { id: "p10", name: "Orangensaft",      price: 3.50, category: "kalt",    taxRate: 19 },
+  { id: "p11", name: "Eiskaffee",        price: 4.50, category: "kalt",    taxRate: 19 },
+  { id: "p12", name: "Croissant",        price: 2.20, category: "speisen", taxRate: 7 },
+  { id: "p13", name: "Käsebrötchen",     price: 3.50, category: "speisen", taxRate: 7 },
+  { id: "p14", name: "Sandwich",         price: 5.90, category: "speisen", taxRate: 7 },
+  { id: "p15", name: "Quiche",           price: 4.80, category: "speisen", taxRate: 7 },
+  { id: "p16", name: "Suppe des Tages",  price: 5.50, category: "speisen", taxRate: 7 },
+  { id: "p17", name: "Käsekuchen",       price: 3.90, category: "kuchen",  taxRate: 7 },
+  { id: "p18", name: "Apfelstrudel",     price: 4.20, category: "kuchen",  taxRate: 7 },
+  { id: "p19", name: "Brownie",          price: 3.50, category: "kuchen",  taxRate: 7 },
+  { id: "p20", name: "Muffin",           price: 2.80, category: "kuchen",  taxRate: 7 },
+];
+const DEFAULT_TABLES = ["Theke", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+
+/* ---------- Hilfsfunktionen ---------- */
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+const euro = (n) => n.toLocaleString("de-DE", { style: "currency", currency: "EUR" });
+const todayKey = () => new Date().toISOString().slice(0, 10);
+
+const STORE = {
+  load(key, fallback) {
+    try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }
+    catch { return fallback; }
+  },
+  save(key, value) { localStorage.setItem(key, JSON.stringify(value)); },
+};
+
+const KEY_PRODUCTS = "pp_products";
+const KEY_CATEGORIES = "pp_categories";
+const KEY_SALES = "pp_sales";
+const KEY_SHOP = "pp_shop";
+
+let categories = STORE.load(KEY_CATEGORIES, DEFAULT_CATEGORIES);
+let products = STORE.load(KEY_PRODUCTS, DEFAULT_PRODUCTS);
+let sales = STORE.load(KEY_SALES, {});
+let shop = STORE.load(KEY_SHOP, { name: "PayPoint Café", addr: "" });
+
+let currentTable = null;
+let activeCategory = categories[0] ? categories[0].id : null;
+let order = [];
+let payMethod = "bar";
+
+/* ---------- Rendering: Kasse ---------- */
+function renderTables() {
+  const row = $("#table-row");
+  row.innerHTML = "";
+  DEFAULT_TABLES.forEach((t) => {
+    const chip = document.createElement("button");
+    chip.className = "table-chip" + (currentTable === t ? " active" : "");
+    chip.textContent = t === "Theke" ? "Theke / To-Go" : "Tisch " + t;
+    chip.onclick = () => { currentTable = t; renderTables(); updateOrderHeader(); };
+    row.appendChild(chip);
+  });
+}
+function renderCategories() {
+  const row = $("#category-row");
+  row.innerHTML = "";
+  categories.forEach((c) => {
+    const b = document.createElement("button");
+    b.className = "cat-btn" + (activeCategory === c.id ? " active" : "");
+    b.textContent = (c.icon ? c.icon + " " : "") + c.name;
+    b.onclick = () => { activeCategory = c.id; renderCategories(); renderProducts(); };
+    row.appendChild(b);
+  });
+}
+function renderProducts() {
+  const grid = $("#product-grid");
+  grid.innerHTML = "";
+  products.filter((p) => p.category === activeCategory).forEach((p) => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.innerHTML = `<div class="p-name">${escapeHtml(p.name)}</div><div class="p-price">${euro(p.price)}</div>`;
+    card.onclick = () => addToOrder(p);
+    grid.appendChild(card);
+  });
+  if (!grid.children.length) grid.innerHTML = `<p class="empty-hint">Keine Produkte in dieser Kategorie.</p>`;
+}
+function updateOrderHeader() {
+  const label = currentTable
+    ? (currentTable === "Theke" ? "Theke / To-Go" : "Tisch " + currentTable)
+    : "Kein Tisch";
+  $("#order-table-label").textContent = label;
+}
+function renderOrder() {
+  const box = $("#order-items");
+  box.innerHTML = "";
+  if (!order.length) {
+    box.innerHTML = `<p class="empty-hint">Tippe auf Produkte, um sie hinzuzufügen.</p>`;
+  } else {
+    order.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "order-item";
+      row.innerHTML = `
+        <div class="oi-name">${escapeHtml(item.name)}<small>${euro(item.price)} · ${item.taxRate}% MwSt.</small></div>
+        <div class="qty-ctrl">
+          <button class="qty-btn" data-act="minus">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" data-act="plus">+</button>
+        </div>
+        <div class="oi-total">${euro(item.price * item.qty)}</div>`;
+      row.querySelector('[data-act="minus"]').onclick = () => changeQty(item.id, -1);
+      row.querySelector('[data-act="plus"]').onclick = () => changeQty(item.id, +1);
+      box.appendChild(row);
+    });
+  }
+  renderSummary();
+}
+function renderSummary() {
+  const { net, tax, total } = computeTotals(order);
+  $("#sum-net").textContent = euro(net);
+  $("#sum-tax").textContent = euro(tax);
+  $("#sum-total").textContent = euro(total);
+  $("#btn-pay").disabled = order.length === 0;
+}
+
+/* ---------- Bestell-Aktionen ---------- */
+function addToOrder(product) {
+  if (!currentTable) currentTable = "Theke";
+  updateOrderHeader();
+  renderTables();
+  const existing = order.find((i) => i.id === product.id);
+  if (existing) existing.qty += 1;
+  else order.push({ id: product.id, name: product.name, price: product.price, taxRate: product.taxRate, qty: 1 });
+  renderOrder();
+}
+function changeQty(id, delta) {
+  const item = order.find((i) => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) order = order.filter((i) => i.id !== id);
+  renderOrder();
+}
+function clearOrder() { order = []; renderOrder(); }
+
+function computeTotals(items) {
+  let total = 0, tax = 0;
+  items.forEach((i) => {
+    const lineGross = i.price * i.qty;
+    total += lineGross;
+    tax += lineGross - lineGross / (1 + i.taxRate / 100);
+  });
+  return { net: total - tax, tax, total };
+}
+
+/* ---------- Bezahlen ---------- */
+function openPayModal() {
+  if (!order.length) return;
+  const { total } = computeTotals(order);
+  $("#pay-total-amount").textContent = euro(total);
+  payMethod = "bar";
+  $$(".paymethod").forEach((b) => b.classList.toggle("active", b.dataset.method === "bar"));
+  $("#cash-area").style.display = "block";
+  $("#cash-given").value = "";
+  $("#cash-change").textContent = euro(0);
+  renderQuickCash(total);
+  $("#pay-modal").classList.add("show");
+}
+function renderQuickCash(total) {
+  const box = $("#quick-cash");
+  box.innerHTML = "";
+  quickCashValues(total).forEach((v) => {
+    const b = document.createElement("button");
+    b.textContent = v === total ? "Passend" : euro(v);
+    b.onclick = () => { $("#cash-given").value = v.toFixed(2); updateChange(); };
+    box.appendChild(b);
+  });
+}
+function quickCashValues(total) {
+  const set = new Set([total]);
+  [5, 10, 20, 50].forEach((note) => { if (note >= total) set.add(note); });
+  set.add(Math.ceil(total / 10) * 10);
+  return Array.from(set).sort((a, b) => a - b).slice(0, 4);
+}
+function updateChange() {
+  const { total } = computeTotals(order);
+  const given = parseFloat($("#cash-given").value) || 0;
+  $("#cash-change").textContent = euro(Math.max(0, given - total));
+}
+function confirmPayment() {
+  const { net, tax, total } = computeTotals(order);
+  const given = payMethod === "bar" ? parseFloat($("#cash-given").value) || 0 : total;
+  if (payMethod === "bar" && given < total) {
+    alert("Der gegebene Betrag ist kleiner als der zu zahlende Betrag.");
+    return;
+  }
+  const sale = {
+    time: new Date().toISOString(),
+    table: currentTable || "Theke",
+    method: payMethod,
+    items: order.map((i) => ({ name: i.name, price: i.price, qty: i.qty, taxRate: i.taxRate })),
+    net, tax, total,
+    given: payMethod === "bar" ? given : total,
+    change: payMethod === "bar" ? Math.max(0, given - total) : 0,
+  };
+  const day = todayKey();
+  if (!sales[day]) sales[day] = [];
+  sales[day].push(sale);
+  STORE.save(KEY_SALES, sales);
+  $("#pay-modal").classList.remove("show");
+  showReceipt(sale);
+  order = [];
+  currentTable = null;
+  renderTables();
+  updateOrderHeader();
+  renderOrder();
+}
+
+/* ---------- Bon ---------- */
+function showReceipt(sale) {
+  const d = new Date(sale.time);
+  const tableLabel = sale.table === "Theke" ? "Theke / To-Go" : "Tisch " + sale.table;
+  let lines = "";
+  sale.items.forEach((i) => {
+    lines += `<div class="r-row"><span>${i.qty}× ${escapeHtml(i.name)}</span><span>${euro(i.price * i.qty)}</span></div>`;
+  });
+  const methodLabel = sale.method === "bar" ? "Bar" : "Karte";
+  let cashLines = "";
+  if (sale.method === "bar") {
+    cashLines = `<div class="r-row"><span>Gegeben</span><span>${euro(sale.given)}</span></div>
+                 <div class="r-row"><span>Rückgeld</span><span>${euro(sale.change)}</span></div>`;
+  }
+  const addrLine = shop.addr ? `<div class="r-center">${escapeHtml(shop.addr)}</div>` : "";
+  $("#receipt").innerHTML = `
+    <h3>${escapeHtml(shop.name || "PayPoint Café")}</h3>
+    ${addrLine}
+    <div class="r-center">Vielen Dank für Ihren Besuch!</div>
+    <div class="r-line"></div>
+    <div class="r-row"><span>${d.toLocaleDateString("de-DE")}</span><span>${d.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })}</span></div>
+    <div class="r-row"><span>${tableLabel}</span><span></span></div>
+    <div class="r-line"></div>
+    ${lines}
+    <div class="r-line"></div>
+    <div class="r-row"><span>Netto</span><span>${euro(sale.net)}</span></div>
+    <div class="r-row"><span>MwSt.</span><span>${euro(sale.tax)}</span></div>
+    <div class="r-row r-total"><span>SUMME</span><span>${euro(sale.total)}</span></div>
+    <div class="r-line"></div>
+    <div class="r-row"><span>Zahlart</span><span>${methodLabel}</span></div>
+    ${cashLines}
+    <div class="r-line"></div>
+    <div class="r-center">Dies ist kein steuerlicher Beleg.</div>`;
+  $("#receipt-modal").classList.add("show");
+}
+
+/* ---------- Tagesumsatz ---------- */
+function renderReport() {
+  const day = todayKey();
+  const list = sales[day] || [];
+  $("#report-date").textContent = new Date().toLocaleDateString("de-DE", {
+    weekday: "long", year: "numeric", month: "long", day: "numeric",
+  });
+  let total = 0, cash = 0, card = 0;
+  list.forEach((s) => { total += s.total; if (s.method === "bar") cash += s.total; else card += s.total; });
+  $("#kpi-total").textContent = euro(total);
+  $("#kpi-count").textContent = String(list.length);
+  $("#kpi-cash").textContent = euro(cash);
+  $("#kpi-card").textContent = euro(card);
+  const body = $("#sales-body");
+  body.innerHTML = "";
+  if (!list.length) {
+    body.innerHTML = `<tr><td colspan="5" style="color:var(--muted)">Heute noch keine Bezahlungen.</td></tr>`;
+    return;
+  }
+  [...list].reverse().forEach((s) => {
+    const tr = document.createElement("tr");
+    const t = new Date(s.time).toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+    const itemsTxt = s.items.map((i) => `${i.qty}× ${i.name}`).join(", ");
+    const tableLabel = s.table === "Theke" ? "Theke" : "Tisch " + s.table;
+    tr.innerHTML = `<td>${t}</td><td>${tableLabel}</td><td>${escapeHtml(itemsTxt)}</td>
+                    <td>${s.method === "bar" ? "Bar" : "Karte"}</td><td class="right">${euro(s.total)}</td>`;
+    body.appendChild(tr);
+  });
+}
+function exportCsv() {
+  const day = todayKey();
+  const list = sales[day] || [];
+  if (!list.length) { alert("Heute gibt es noch keine Bezahlungen zum Exportieren."); return; }
+  const rows = [["Zeit", "Tisch", "Artikel", "Zahlart", "Netto", "MwSt", "Gesamt"]];
+  list.forEach((s) => {
+    rows.push([
+      new Date(s.time).toLocaleString("de-DE"), s.table,
+      s.items.map((i) => `${i.qty}x ${i.name}`).join(" | "),
+      s.method === "bar" ? "Bar" : "Karte",
+      s.net.toFixed(2), s.tax.toFixed(2), s.total.toFixed(2),
+    ]);
+  });
+  const csv = rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(";")).join("\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `tagesumsatz_${day}.csv`; a.click();
+  URL.revokeObjectURL(url);
+}
+function resetDay() {
+  const day = todayKey();
+  if (!sales[day] || !sales[day].length) { alert("Heute gibt es keine Daten zum Zurücksetzen."); return; }
+  if (!confirm("Tag wirklich abschließen? Die heutigen Bezahlungen werden aus der Übersicht entfernt.\n\nTipp: Exportiere vorher als CSV, falls du die Daten behalten möchtest.")) return;
+  delete sales[day];
+  STORE.save(KEY_SALES, sales);
+  renderReport();
+}
+
+/* ---------- Verwaltung ---------- */
+function renderAdmin() {
+  const sel = $("#f-category");
+  sel.innerHTML = "";
+  categories.forEach((c) => {
+    const o = document.createElement("option");
+    o.value = c.id; o.textContent = c.name; sel.appendChild(o);
+  });
+  const listBox = $("#admin-list");
+  listBox.innerHTML = "";
+  categories.forEach((cat) => {
+    const catItems = products.filter((p) => p.category === cat.id);
+    if (!catItems.length) return;
+    const header = document.createElement("div");
+    header.className = "ai-meta"; header.style.margin = "10px 0 4px";
+    header.textContent = (cat.icon ? cat.icon + " " : "") + cat.name;
+    listBox.appendChild(header);
+    catItems.forEach((p) => {
+      const row = document.createElement("div");
+      row.className = "admin-item";
+      row.innerHTML = `<span class="ai-name">${escapeHtml(p.name)}</span>
+                       <span class="ai-meta">${euro(p.price)} · ${p.taxRate}% MwSt.</span>
+                       <button class="ai-del">Löschen</button>`;
+      row.querySelector(".ai-del").onclick = () => {
+        products = products.filter((x) => x.id !== p.id);
+        STORE.save(KEY_PRODUCTS, products);
+        renderAdmin(); renderProducts();
+      };
+      listBox.appendChild(row);
+    });
+  });
+}
+function addProduct(e) {
+  e.preventDefault();
+  const name = $("#f-name").value.trim();
+  const price = parseFloat($("#f-price").value);
+  const category = $("#f-category").value;
+  const taxRate = parseInt($("#f-tax").value, 10);
+  if (!name || isNaN(price) || price < 0) return;
+  products.push({ id: "u" + Date.now(), name, price, category, taxRate });
+  STORE.save(KEY_PRODUCTS, products);
+  $("#admin-form").reset();
+  renderAdmin(); renderProducts();
+}
+function resetMenu() {
+  if (!confirm("Speisekarte wirklich auf die Standard-Produkte zurücksetzen? Deine eigenen Produkte gehen dabei verloren.")) return;
+  products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+  categories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
+  STORE.save(KEY_PRODUCTS, products);
+  STORE.save(KEY_CATEGORIES, categories);
+  activeCategory = categories[0].id;
+  renderAdmin(); renderCategories(); renderProducts();
+}
+
+/* ---------- Einstellungen ---------- */
+function renderSettings() {
+  $("#s-shopname").value = shop.name || "";
+  $("#s-shopaddr").value = shop.addr || "";
+}
+function saveSettings() {
+  shop = { name: $("#s-shopname").value.trim() || "PayPoint Café", addr: $("#s-shopaddr").value.trim() };
+  STORE.save(KEY_SHOP, shop);
+  applyShop();
+  alert("Gespeichert! Dein Café-Name erscheint jetzt auf dem Bon.");
+}
+function applyShop() {
+  $("#brand-name").textContent = shop.name || "PayPoint Kasse";
+  document.title = (shop.name || "PayPoint") + " – Kasse";
+}
+
+/* ---------- Navigation ---------- */
+function switchView(view) {
+  $$(".tab-btn").forEach((b) => b.classList.toggle("active", b.dataset.view === view));
+  $$(".view").forEach((v) => v.classList.remove("active"));
+  $("#view-" + view).classList.add("active");
+  if (view === "umsatz") renderReport();
+  if (view === "verwaltung") renderAdmin();
+  if (view === "einstellungen") renderSettings();
+}
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function tickClock() {
+  $("#clock").textContent = new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+}
+
+function init() {
+  applyShop();
+  $$(".tab-btn").forEach((b) => (b.onclick = () => switchView(b.dataset.view)));
+  renderTables(); renderCategories(); renderProducts(); renderOrder(); updateOrderHeader();
+  $("#btn-clear").onclick = clearOrder;
+  $("#btn-pay").onclick = openPayModal;
+  $$(".paymethod").forEach((b) => {
+    b.onclick = () => {
+      payMethod = b.dataset.method;
+      $$(".paymethod").forEach((x) => x.classList.toggle("active", x === b));
+      $("#cash-area").style.display = payMethod === "bar" ? "block" : "none";
+    };
+  });
+  $("#cash-given").oninput = updateChange;
+  $("#btn-pay-cancel").onclick = () => $("#pay-modal").classList.remove("show");
+  $("#btn-pay-confirm").onclick = confirmPayment;
+  $("#btn-receipt-print").onclick = () => window.print();
+  $("#btn-receipt-close").onclick = () => $("#receipt-modal").classList.remove("show");
+  $("#btn-export").onclick = exportCsv;
+  $("#btn-reset-day").onclick = resetDay;
+  $("#admin-form").onsubmit = addProduct;
+  $("#btn-reset-menu").onclick = resetMenu;
+  $("#btn-save-settings").onclick = saveSettings;
+  tickClock();
+  setInterval(tickClock, 1000 * 20);
+}
+document.addEventListener("DOMContentLoaded", init);
+  </script>
 </body>
 </html>
