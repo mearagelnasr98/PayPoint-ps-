@@ -68,6 +68,31 @@ Die Kartenzahlung ist aktuell **simuliert**.
 
 ---
 
+## 🤖 Codex-Integration (Design-Engineering-Skill)
+
+Dieses Repo ist mit **OpenAI Codex** verbunden. Codex lädt die Datei
+[`AGENTS.md`](AGENTS.md) automatisch und nutzt damit den Design-Engineering-Skill
+aus [`skills/emil-design-eng/SKILL.md`](skills/emil-design-eng/SKILL.md) – die
+UI-Philosophie von Emil Kowalski (Animationen, Buttons, Übergänge, Politur).
+
+**Slash-Befehl in Codex aktivieren** (einmalig pro Rechner):
+
+```bash
+mkdir -p ~/.codex/prompts
+ln -s "$(pwd)/.codex/prompts/design-eng.md" ~/.codex/prompts/design-eng.md
+```
+
+Danach im Codex aufrufbar:
+
+```
+/design-eng review der Bezahlen-Animation in index.html
+```
+
+> Ohne den Slash-Befehl wirkt der Skill trotzdem: Solange du im Projektordner
+> arbeitest, liest Codex `AGENTS.md` automatisch ein.
+
+---
+
 ## 📜 Lizenz
 
 MIT – siehe [LICENSE](LICENSE). Frei nutzbar und anpassbar.
