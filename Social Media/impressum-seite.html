@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impressum | PayPoint POS</title>
+<meta name="description" content="Impressum der PayPoint POS UG (haftungsbeschränkt) – Angaben gemäß § 5 DDG: Anschrift, Kontakt, Registereintrag und Umsatzsteuer-ID.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://get-paypoint.de/impressum">
+<meta property="og:title" content="Impressum | PayPoint POS">
+<meta property="og:description" content="Impressum der PayPoint POS UG (haftungsbeschränkt) – Angaben gemäß § 5 DDG.">
+<meta property="og:url" content="https://get-paypoint.de/impressum">
+<meta property="og:image" content="https://get-paypoint.de/og.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="PayPoint POS">
+<style>
+  :root {
+    --background: #fafafa;
+    --card: #fefefe;
+    --black: #1c1c1c;
+    --heading: #0f172b;
+    --body: #314158;
+    --muted: #62748e;
+    --gray-text: #5e5e5e;
+    --primary: #00afef;
+    --border: #e5e5e5;
+    --shadow-btn: 0 8px 20px rgba(74, 151, 245, .22);
+    --font: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); font-size: 16px; line-height: 1.6; color: var(--body); background: var(--background); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1056px; margin: 0 auto; padding: 0 24px; }
+  a { text-decoration: none; color: var(--primary); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 24px; border-radius: 9999px; font-weight: 500; font-size: 16px; transition: opacity .15s; }
+  .btn:hover { opacity: .9; }
+  .btn-primary { background: var(--primary); color: #fff; box-shadow: var(--shadow-btn); }
+  .btn-white { background: #fff; color: var(--heading); }
+  .arrow::after { content: "›"; font-size: 20px; line-height: 1; transform: translateY(-1px); }
+
+  nav { position: sticky; top: 0; background: rgba(250,250,250,.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 96px; max-width: 1056px; margin: 0 auto; padding: 0 24px; }
+  .nav-inner .logo img { height: 48px; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { color: var(--black); font-weight: 600; font-size: 17px; }
+  @media (max-width: 720px) { .nav-links a:not(.btn) { display: none; } }
+
+  .hero { text-align: center; padding: 64px 0 16px; }
+  .hero .eyebrow { color: var(--muted); font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+  .hero h1 { font-weight: 900; text-transform: uppercase; color: #333; font-size: clamp(44px, 8vw, 96px); line-height: .92; letter-spacing: -.02em; }
+  .hero .sub { max-width: 560px; margin: 24px auto 0; color: var(--muted); font-size: 18px; }
+
+  section { padding: 56px 0 88px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 880px; margin: 0 auto; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 32px 28px; }
+  .card.full { grid-column: 1 / -1; }
+  .card .num { color: var(--primary); font-weight: 700; font-size: 13px; letter-spacing: .08em; }
+  .card h2 { color: var(--heading); font-size: 19px; font-weight: 700; margin: 8px 0 12px; letter-spacing: -.01em; }
+  .card p { color: var(--body); font-size: 16px; }
+  .card p + p { margin-top: 4px; }
+  .card .label { color: var(--muted); font-size: 13.5px; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; margin-top: 14px; }
+
+  .cta-band { background: var(--primary); text-align: center; padding: 88px 24px 110px; position: relative; }
+  .cta-band h2 { color: #fff; font-weight: 800; letter-spacing: -.02em; font-size: clamp(30px, 5vw, 56px); line-height: 1.05; max-width: 900px; margin: 0 auto; }
+  .cta-band .btn { margin-top: 40px; min-width: min(640px, 80vw); }
+  .cta-band svg.curve { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 36px; display: block; }
+
+  footer { background: var(--background); padding: 64px 0 32px; }
+  .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 40px; }
+  @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .foot-grid { grid-template-columns: 1fr; } }
+  footer img.flogo { height: 44px; margin-bottom: 18px; }
+  footer .addr { color: var(--gray-text); font-size: 15px; }
+  footer h4 { color: #8a8a8a; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+  footer .cols a { display: block; color: var(--body); font-size: 15px; margin-bottom: 12px; }
+  .grow-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .grow-card h5 { color: var(--heading); font-size: 16px; margin-bottom: 8px; }
+  .grow-card p { color: var(--muted); font-size: 14.5px; margin-bottom: 16px; }
+  .grow-card .btn { height: 42px; font-size: 15px; }
+  .copyright { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 24px; text-align: center; color: #9a9a9a; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="https://get-paypoint.de"><img src="https://get-paypoint.de/paypoint_full_horizontal_logo.png" alt="PayPoint Logo"></a>
+    <div class="nav-links">
+      <a href="https://get-paypoint.de/preise">Preise</a>
+      <a href="https://get-paypoint.de/kontakt">Kontakt</a>
+      <a class="btn btn-primary" href="https://get-paypoint.de/kontakt">Jetzt starten</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">PayPoint POS UG (haftungsbeschränkt)</p>
+    <h1>Impressum</h1>
+    <p class="sub">Angaben gemäß § 5 DDG</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="grid">
+
+      <div class="card">
+        <span class="num">01</span>
+        <h2>Unternehmen</h2>
+        <p>PayPoint POS UG (haftungsbeschränkt)</p>
+        <p>Kolonnenstraße 8</p>
+        <p>10827 Berlin</p>
+        <p>Deutschland</p>
+      </div>
+
+      <div class="card">
+        <span class="num">02</span>
+        <h2>Vertreten durch</h2>
+        <p>Mearag El Nasr</p>
+        <p>Geschäftsführer</p>
+      </div>
+
+      <div class="card">
+        <span class="num">03</span>
+        <h2>Kontakt</h2>
+        <p class="label">Telefon</p>
+        <p><a href="tel:+4917614592342">+49 (0) 176 14592342</a></p>
+        <p class="label">E-Mail</p>
+        <p><a href="mailto:kontakt@paypointpos.de">kontakt@paypointpos.de</a></p>
+      </div>
+
+      <div class="card">
+        <span class="num">04</span>
+        <h2>Registereintrag</h2>
+        <p>Eintragung im Handelsregister</p>
+        <p class="label">Registergericht</p>
+        <p>Amtsgericht Charlottenburg (Berlin)</p>
+        <p class="label">Registernummer</p>
+        <p>HRB 282594 B</p>
+      </div>
+
+      <div class="card">
+        <span class="num">05</span>
+        <h2>Umsatzsteuer-ID</h2>
+        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:</p>
+        <p><b>DE462441346</b></p>
+      </div>
+
+      <div class="card">
+        <span class="num">06</span>
+        <h2>Verantwortlich gemäß § 18 Abs. 2 MStV</h2>
+        <p>Mearag El Nasr</p>
+        <p>Kolonnenstraße 8</p>
+        <p>10827 Berlin</p>
+      </div>
+
+      <div class="card full">
+        <span class="num">07</span>
+        <h2>EU-Streitschlichtung</h2>
+        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" rel="noopener" target="_blank">https://ec.europa.eu/consumers/odr/</a></p>
+        <p style="margin-top: 8px;">Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+      </div>
+
+      <div class="card full">
+        <span class="num">08</span>
+        <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+        <p>Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Bring dein Geschäft auf die nächste Stufe.</h2>
+  <a class="btn btn-white" href="https://get-paypoint.de/kontakt">Jetzt starten</a>
+  <svg class="curve" viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C480,0 960,0 1440,40 L1440,40 L0,40 Z" fill="#fafafa"/></svg>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="flogo" src="https://get-paypoint.de/paypoint_full_horizontal_logo.png" alt="PayPoint Logo">
+        <p class="addr">Kolonnenstraße 8 10827 Berlin</p>
+      </div>
+      <div class="cols">
+        <h4>Produkte</h4>
+        <a href="https://get-paypoint.de/produkte/kasse">Kassensystem</a>
+        <a href="https://get-paypoint.de/produkte/qr-code">QR-Code Bestellung</a>
+        <a href="https://get-paypoint.de/produkte/fahrer-terminal">Fahrer Terminal</a>
+        <a href="https://get-paypoint.de/produkte/paypoint-drive">PayPoint Drive</a>
+        <a href="https://get-paypoint.de/produkte/webshop-app">Webshop &amp; App</a>
+        <a href="https://get-paypoint.de/produkte/restaurant-management">Restaurant Management</a>
+      </div>
+      <div class="cols">
+        <h4>Unternehmen</h4>
+        <a href="https://get-paypoint.de/preise">Preise</a>
+        <a href="https://get-paypoint.de/kontakt">Kontakt</a>
+        <a href="https://get-paypoint.de/datenschutz">Datenschutz</a>
+        <a href="https://get-paypoint.de/impressum">Impressum</a>
+      </div>
+      <div>
+        <div class="grow-card">
+          <h5>Bereit zu wachsen?</h5>
+          <p>Erhalten Sie eine kostenlose Beratung und sehen Sie, wie PayPoint in Ihr Restaurant passt.</p>
+          <a class="btn btn-primary arrow" href="https://get-paypoint.de/kontakt">Jetzt starten</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">© PayPoint POS UG (haftungsbeschränkt). Alle Rechte vorbehalten.</div>
+  </div>
+</footer>
+
+</body>
+</html>

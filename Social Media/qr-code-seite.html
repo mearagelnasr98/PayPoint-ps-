@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR-Code Bestellung fürs Restaurant – Gäste bestellen direkt am Tisch | PayPoint POS</title>
+<meta name="description" content="Gäste scannen, bestellen und bezahlen direkt am Tisch – jede Bestellung landet sofort in deiner Kasse. Mehr Umsatz pro Tisch, weniger Laufwege. Monatlich kündbar.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://get-paypoint.de/produkte/qr-code">
+<meta property="og:title" content="QR-Code Bestellung fürs Restaurant – Gäste bestellen direkt am Tisch | PayPoint POS">
+<meta property="og:description" content="Gäste scannen, bestellen und bezahlen direkt am Tisch – jede Bestellung landet sofort in deiner Kasse. Mehr Umsatz pro Tisch, weniger Laufwege. Monatlich kündbar.">
+<meta property="og:url" content="https://get-paypoint.de/produkte/qr-code">
+<meta property="og:image" content="https://get-paypoint.de/og.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="PayPoint POS">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Brauchen meine Gäste eine App?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Nein. Der QR-Code öffnet dein Menü direkt im Browser des Smartphones. Kein Download, keine Registrierung – scannen und bestellen."}},
+    {"@type": "Question", "name": "Wo landen die QR-Bestellungen?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Direkt in deinem PayPoint Kassensystem – auf Wunsch sofort als Bon in Küche oder Bar gedruckt. Kein Abtippen, keine Übertragungsfehler."}},
+    {"@type": "Question", "name": "Kann ich mein Menü selbst ändern?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Ja. Speisen, Getränke, Preise und Verfügbarkeiten verwaltest du selbst über dein Admin-Panel. Änderungen erscheinen sofort auf der QR-Speisekarte."}},
+    {"@type": "Question", "name": "Brauche ich neue Hardware?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Nein. PayPoint läuft auf deinen bestehenden Geräten wie Tablet oder Computer. Du brauchst nur die QR-Codes auf den Tischen."}},
+    {"@type": "Question", "name": "Wie schnell kann ich starten?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Sofort. Einrichtung und QR-Codes sind in kurzer Zeit erledigt – und du kannst PayPoint monatlich kündigen, ohne langfristige Bindung."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --background: #fafafa;
+    --card: #fefefe;
+    --black: #1c1c1c;
+    --heading: #0f172b;
+    --body: #314158;
+    --muted: #62748e;
+    --gray-text: #5e5e5e;
+    --primary: #00afef;
+    --primary-dark: #183e93;
+    --border: #e5e5e5;
+    --radius: .625rem;
+    --shadow-btn: 0 8px 20px rgba(74, 151, 245, .22);
+    --font: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); font-size: 16px; line-height: 1.5; color: var(--body); background: var(--background); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1056px; margin: 0 auto; padding: 0 24px; }
+  a { text-decoration: none; }
+  img, video { max-width: 100%; display: block; }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 24px; border-radius: 9999px; font-weight: 500; font-size: 16px; transition: opacity .15s; }
+  .btn:hover { opacity: .9; }
+  .btn-primary { background: var(--primary); color: #fff; box-shadow: var(--shadow-btn); }
+  .btn-secondary { background: #fff; color: var(--heading); border: 1px solid var(--border); }
+  .btn-white { background: #fff; color: var(--heading); }
+  .arrow::after { content: "›"; font-size: 20px; line-height: 1; transform: translateY(-1px); }
+
+  nav { position: sticky; top: 0; background: rgba(250,250,250,.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 96px; max-width: 1056px; margin: 0 auto; padding: 0 24px; }
+  .nav-inner .logo img { height: 48px; }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { color: var(--black); font-weight: 600; font-size: 17px; }
+  @media (max-width: 720px) { .nav-links a:not(.btn) { display: none; } }
+
+  .hero { text-align: center; padding: 56px 0 0; }
+  .hero h1 { font-weight: 900; text-transform: uppercase; color: #333; font-size: clamp(44px, 8.5vw, 100px); line-height: .92; letter-spacing: -.02em; }
+  .hero .sub { max-width: 640px; margin: 28px auto 0; color: var(--muted); font-size: 19px; }
+  .hero .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+  .hero-img { max-width: 880px; margin: 48px auto 0; }
+  .badge-row { display: flex; gap: 28px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 40px; color: var(--gray-text); font-size: 17px; }
+  .badge-row span b { color: var(--heading); }
+
+  section { padding: 72px 0; }
+  .h-display { font-weight: 800; color: var(--heading); letter-spacing: -.025em; font-size: clamp(32px, 5vw, 56px); line-height: 1.05; }
+  .center { text-align: center; }
+  .lede { color: var(--muted); font-size: 18px; max-width: 680px; margin: 18px auto 0; }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 44px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 32px 28px; }
+  .card .num { color: var(--primary); font-weight: 900; font-size: 40px; letter-spacing: -.02em; line-height: 1; }
+  .card h3 { color: var(--heading); font-size: 20px; font-weight: 700; margin: 14px 0 8px; letter-spacing: -.01em; }
+  .card p { color: var(--muted); font-size: 16px; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  @media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+  .split h2 { font-weight: 800; color: var(--heading); letter-spacing: -.025em; font-size: clamp(34px, 4.5vw, 54px); line-height: 1.02; }
+  .split p { color: var(--body); font-size: 17px; margin-top: 22px; }
+  .split .btn { margin-top: 28px; }
+  .split .visual { border-radius: 24px; overflow: hidden; }
+  .split .visual img, .split .visual video { width: 100%; height: 100%; object-fit: cover; }
+
+  .stat-band { text-align: center; }
+  .stat-band .big { font-weight: 900; color: var(--primary); font-size: clamp(72px, 12vw, 140px); line-height: 1; letter-spacing: -.03em; }
+  .stat-band p { max-width: 560px; margin: 16px auto 0; color: var(--body); font-size: 18px; }
+
+  .check-list { list-style: none; margin-top: 24px; }
+  .check-list li { padding: 10px 0 10px 36px; position: relative; color: var(--body); font-size: 17px; }
+  .check-list li::before { content: "✓"; position: absolute; left: 0; top: 8px; width: 26px; height: 26px; border-radius: 50%; background: rgba(0,175,239,.12); color: var(--primary); font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+  .faq { max-width: 880px; margin: 44px auto 0; }
+  .faq details { border-top: 1px solid var(--border); }
+  .faq details:last-child { border-bottom: 1px solid var(--border); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 22px 4px; color: var(--heading); font-weight: 600; font-size: 17px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "⌄"; color: var(--muted); font-size: 18px; transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(180deg); }
+  .faq details p { padding: 0 4px 22px; color: var(--body); }
+
+  .cta-band { background: var(--primary); text-align: center; padding: 88px 24px 110px; position: relative; }
+  .cta-band h2 { color: #fff; font-weight: 800; letter-spacing: -.02em; font-size: clamp(30px, 5vw, 56px); line-height: 1.05; max-width: 900px; margin: 0 auto; }
+  .cta-band .sub { color: rgba(255,255,255,.85); font-size: 18px; margin-top: 16px; }
+  .cta-band .btn { margin-top: 40px; min-width: min(640px, 80vw); justify-content: center; }
+  .cta-band svg.curve { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 36px; display: block; }
+
+  footer { background: var(--background); padding: 64px 0 32px; }
+  .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 40px; }
+  @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .foot-grid { grid-template-columns: 1fr; } }
+  footer img.flogo { height: 44px; margin-bottom: 18px; }
+  footer .addr { color: var(--gray-text); font-size: 15px; }
+  footer h4 { color: #8a8a8a; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+  footer .cols a { display: block; color: var(--body); font-size: 15px; margin-bottom: 12px; }
+  .grow-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .grow-card h5 { color: var(--heading); font-size: 16px; margin-bottom: 8px; }
+  .grow-card p { color: var(--muted); font-size: 14.5px; margin-bottom: 16px; }
+  .grow-card .btn { height: 42px; font-size: 15px; }
+  .copyright { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 24px; text-align: center; color: #9a9a9a; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="https://get-paypoint.de"><img src="https://get-paypoint.de/paypoint_full_horizontal_logo.png" alt="PayPoint Logo"></a>
+    <div class="nav-links">
+      <a href="https://get-paypoint.de/preise">Preise</a>
+      <a href="https://get-paypoint.de/kontakt">Kontakt</a>
+      <a class="btn btn-primary" href="https://get-paypoint.de/kontakt">Jetzt starten</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Scannen.<br>Bestellen.<br>Kassieren.</h1>
+    <p class="sub">Deine Gäste bestellen per QR-Code direkt vom Tisch – und jede Bestellung landet sofort in deiner Kasse. Ohne App, ohne Wartezeit, ohne Abtippen.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary arrow" href="https://get-paypoint.de/kontakt">Kostenlos starten</a>
+      <a class="btn btn-secondary arrow" href="#ablauf">So funktioniert's</a>
+    </div>
+    <div class="badge-row">
+      <span><b>Keine App</b> nötig</span>
+      <span><b>Direkt in der Kasse</b> &amp; Küche</span>
+      <span><b>Monatlich</b> kündbar</span>
+    </div>
+    <div class="hero-img">
+      <img src="https://get-paypoint.de/assets/landing/qrcode_ordering.png" alt="Gast scannt QR-Code und bestellt per Smartphone am Tisch">
+    </div>
+  </div>
+</header>
+
+<section id="ablauf">
+  <div class="wrap">
+    <div class="center">
+      <h2 class="h-display">In drei Schritten zur Bestellung</h2>
+      <p class="lede">Vom Scan bis zum Bon in der Küche vergehen Sekunden – ganz ohne dein Personal.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="num">1</div>
+        <h3>Gast scannt den QR-Code</h3>
+        <p>Auf dem Tisch klebt dein QR-Code. Ein Scan mit der Kamera genügt – dein Menü öffnet sich direkt im Browser. Keine App, kein Download, keine Registrierung.</p>
+      </div>
+      <div class="card">
+        <div class="num">2</div>
+        <h3>Bestellt &amp; bezahlt am Tisch</h3>
+        <p>Deine Gäste wählen Speisen, Extras und Sonderwünsche in Ruhe selbst aus – und bestellen genau dann, wenn sie bereit sind. Auch Nachbestellungen laufen ohne Winken und Warten.</p>
+      </div>
+      <div class="card">
+        <div class="num">3</div>
+        <h3>Bestellung landet in der Kasse</h3>
+        <p>Jede Bestellung erscheint sofort in deinem PayPoint System und wird direkt an Küche oder Bar übermittelt. Kein Abtippen, keine Übertragungsfehler, kein Zettelchaos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stat-band">
+    <div class="big">60 %</div>
+    <p>der Gäste bevorzugen QR-Code-Menüs, wenn sie verfügbar sind. Wer das nicht anbietet, verliert Umsatz und verlangsamt seinen Betrieb.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <h2>Mehr Umsatz pro Tisch.</h2>
+        <p>Wenn Gäste nicht auf den Kellner warten müssen, bestellen sie öfter – das zweite Getränk, das Dessert, den Espresso danach. Dein Menü verkauft mit: mit Fotos, Extras und Empfehlungen bei jeder Bestellung.</p>
+        <ul class="check-list">
+          <li>Nachbestellungen ohne Wartezeit – direkt vom Tisch</li>
+          <li>Extras und Zutaten-Optionen bei jedem Gericht</li>
+          <li>Schnellere Tischwechsel durch direkte Abwicklung</li>
+        </ul>
+        <a class="btn btn-primary arrow" href="https://get-paypoint.de/kontakt">Kostenlos starten</a>
+      </div>
+      <div class="visual">
+        <video autoplay muted loop playsinline poster="https://get-paypoint.de/assets/products/qr-code/hero_qrcode.jpeg">
+          <source src="https://get-paypoint.de/assets/products/qr-code/webshop_demo.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="split">
+      <div class="visual">
+        <img src="https://get-paypoint.de/assets/products/qr-code/hero_qrcode.jpeg" alt="QR-Code Speisekarte von PayPoint auf dem Smartphone">
+      </div>
+      <div>
+        <h2>Dein Team hat den Kopf frei.</h2>
+        <p>Bestellungen aufnehmen, zur Kasse laufen, abtippen – das übernimmt ab jetzt der QR-Code. Dein Service konzentriert sich auf das, was Gäste wirklich schätzen: schnelles Essen, freundlicher Service, volle Tische.</p>
+        <ul class="check-list">
+          <li>Weniger Laufwege, weniger Stress im Stoßgeschäft</li>
+          <li>Keine Bestellfehler durch Zurufe oder Handschrift</li>
+          <li>Auch mit kleinem Team volle Auslastung bedienen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <h2>Du behältst die volle Kontrolle.</h2>
+        <p>Speisen, Getränke, Preise und Verfügbarkeiten verwaltest du selbst über dein Admin-Panel. Ein Gericht ist aus? Ein Klick, und es verschwindet von der Karte – sofort, auf jedem Tisch.</p>
+        <ul class="check-list">
+          <li>Menü, Preise und Fotos jederzeit selbst ändern</li>
+          <li>Änderungen erscheinen sofort online</li>
+          <li>QR-Bestellungen und Kasse in einem System – ein Überblick</li>
+        </ul>
+        <a class="btn btn-primary arrow" href="https://get-paypoint.de/kontakt">Kostenlos beraten lassen</a>
+      </div>
+      <div class="visual">
+        <img src="https://get-paypoint.de/assets/products/cash-desk/hero.png" alt="PayPoint Admin und Kasse auf Tablet und Smartphone">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center">
+      <h2 class="h-display">Häufig gestellte Fragen</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Brauchen meine Gäste eine App?</summary>
+        <p>Nein. Der QR-Code öffnet dein Menü direkt im Browser des Smartphones. Kein Download, keine Registrierung – scannen und bestellen.</p>
+      </details>
+      <details>
+        <summary>Wo landen die QR-Bestellungen?</summary>
+        <p>Direkt in deinem PayPoint Kassensystem – auf Wunsch sofort als Bon in Küche oder Bar gedruckt. Kein Abtippen, keine Übertragungsfehler.</p>
+      </details>
+      <details>
+        <summary>Kann ich mein Menü selbst ändern?</summary>
+        <p>Ja. Speisen, Getränke, Preise und Verfügbarkeiten verwaltest du selbst über dein Admin-Panel. Änderungen erscheinen sofort auf der QR-Speisekarte.</p>
+      </details>
+      <details>
+        <summary>Brauche ich neue Hardware?</summary>
+        <p>Nein. PayPoint läuft auf deinen bestehenden Geräten wie Tablet oder Computer. Du brauchst nur die QR-Codes auf den Tischen.</p>
+      </details>
+      <details>
+        <summary>Wie schnell kann ich starten?</summary>
+        <p>Sofort. Einrichtung und QR-Codes sind in kurzer Zeit erledigt – und du kannst PayPoint monatlich kündigen, ohne langfristige Bindung.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Deine Gäste sind bereit zu bestellen.</h2>
+  <p class="sub">Lass dich kostenlos beraten – ganz ohne Verpflichtung, monatlich kündbar.</p>
+  <a class="btn btn-white" href="https://get-paypoint.de/kontakt">Jetzt starten</a>
+  <svg class="curve" viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C480,0 960,0 1440,40 L1440,40 L0,40 Z" fill="#fafafa"/></svg>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="flogo" src="https://get-paypoint.de/paypoint_full_horizontal_logo.png" alt="PayPoint Logo">
+        <p class="addr">Kolonnenstraße 8 10827 Berlin</p>
+      </div>
+      <div class="cols">
+        <h4>Produkte</h4>
+        <a href="https://get-paypoint.de/produkte/kasse">Kassensystem</a>
+        <a href="https://get-paypoint.de/produkte/qr-code">QR-Code Bestellung</a>
+        <a href="https://get-paypoint.de/produkte/fahrer-terminal">Fahrer Terminal</a>
+        <a href="https://get-paypoint.de/produkte/paypoint-drive">PayPoint Drive</a>
+        <a href="https://get-paypoint.de/produkte/webshop-app">Webshop &amp; App</a>
+        <a href="https://get-paypoint.de/produkte/restaurant-management">Restaurant Management</a>
+      </div>
+      <div class="cols">
+        <h4>Unternehmen</h4>
+        <a href="https://get-paypoint.de/preise">Preise</a>
+        <a href="https://get-paypoint.de/kontakt">Kontakt</a>
+        <a href="https://get-paypoint.de/datenschutz">Datenschutz</a>
+        <a href="https://get-paypoint.de/impressum">AGB</a>
+      </div>
+      <div>
+        <div class="grow-card">
+          <h5>Bereit zu wachsen?</h5>
+          <p>Erhalten Sie eine kostenlose Beratung und sehen Sie, wie PayPoint in Ihr Restaurant passt.</p>
+          <a class="btn btn-primary arrow" href="https://get-paypoint.de/kontakt">Jetzt starten</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">© PayPoint POS UG (Haftungsbeschränkt). All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>

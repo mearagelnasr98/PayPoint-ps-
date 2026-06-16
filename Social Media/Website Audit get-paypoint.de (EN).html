@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Website Audit: get-paypoint.de (EN)</title>
+<style>
+  @page { size: A4; margin: 18mm; }
+  body { font-family: Helvetica, Arial, sans-serif; font-size: 10pt; line-height: 1.45; color: #222; max-width: 180mm; margin: 0 auto; padding: 24px; }
+  h1 { color: #1a3c6e; font-size: 22pt; margin: 0 0 4px; }
+  .sub { color: #555; font-size: 9pt; margin-bottom: 20px; }
+  h2 { color: #1a3c6e; font-size: 15pt; margin-top: 28px; border-bottom: 2px solid #1a3c6e; padding-bottom: 4px; }
+  h3 { font-size: 11.5pt; margin-top: 18px; margin-bottom: 6px; }
+  h3.p1 { color: #c0392b; } h3.p2 { color: #d97b29; } h3.p3 { color: #b8960c; } h3.p4 { color: #2e7d4f; }
+  table { border-collapse: collapse; width: 100%; font-size: 8.5pt; margin-bottom: 12px; }
+  th { background: #1a3c6e; color: #fff; text-align: left; padding: 5px 7px; }
+  td { border: 0.5px solid #c9d3df; padding: 5px 7px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f2f5f9; }
+  .quote { background: #f2f5f9; border-left: 3px solid #1a3c6e; padding: 8px 12px; margin: 6px 0 12px; }
+  ol li { margin-bottom: 4px; }
+  thead { display: table-header-group; }
+  tr, .quote { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<h1>Website Audit: get-paypoint.de</h1>
+<p class="sub">Date: June 11, 2026 · Pages reviewed: Home, Kasse (POS), QR Code, Fahrer Terminal (Driver Terminal), PayPoint Drive, Webshop &amp; App, Restaurant Management, Preise (Pricing), Kontakt (Contact), Datenschutz (Privacy Policy), Impressum (Legal Notice)</p>
+
+<h2>Part 1: Prioritized Issue List</h2>
+
+<h3 class="p1">Priority 1 — Legal / Business-Critical</h3>
+<table>
+<thead><tr><th>#</th><th>Issue</th><th>Page(s)</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>"AGB" (Terms) link in the footer points to the Impressum</b> — no Terms &amp; Conditions page exists. A company selling monthly subscriptions needs accessible T&amp;Cs.</td><td>All pages (footer)</td><td>Create a T&amp;Cs page and link it, or remove the link</td></tr>
+<tr><td>2</td><td><b>Impressum cites "§ 5 TMG"</b> — the TMG was replaced by the DDG in May 2024. Correct reference: "§ 5 DDG". Low warning-letter risk, but an easy fix.</td><td>/impressum</td><td>Change text to "Angaben gemäß § 5 DDG"</td></tr>
+<tr><td>3</td><td><b>Privacy policy is too thin.</b> Sections are one-sentence summaries without legal bases (Art. 6 GDPR), retention periods, recipients, or the hosting provider. With Google Analytics, Meta Pixel, TikTok Pixel and Clarity in use, this is exposed to cease-and-desist letters.</td><td>/datenschutz</td><td>Create a full GDPR-compliant policy (generator or lawyer), incl. hosting, legal basis per tool, retention periods, third-country transfers</td></tr>
+<tr><td>4</td><td><b>Contradictory contact details:</b> Contact page: +49 177 7977028 · Impressum/Privacy: +49 176 14592342 · email alternates between info@get-paypoint.de and kontakt@paypointpos.de.</td><td>/kontakt, /impressum, /datenschutz</td><td>Use one phone number and one primary email address consistently everywhere</td></tr>
+</tbody>
+</table>
+
+<h3 class="p2">Priority 2 — Conversion Killers</h3>
+<table>
+<thead><tr><th>#</th><th>Issue</th><th>Page(s)</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>5</td><td><b>Pricing page shows "0%" everywhere</b> ("Up to 0% more revenue", "0x more efficient delivery"). The counter animation apparently never starts without a scroll event — Google and many visitors literally see 0%.</td><td>/preise</td><td>Render real numbers server-side; use the animation only as an effect on top</td></tr>
+<tr><td>6</td><td><b>QR Code page has the wrong hero copy</b> (Driver Terminal text: "All drivers and orders live at a glance…").</td><td>/produkte/qr-code</td><td>Use the corrected copy from Part 2</td></tr>
+<tr><td>7</td><td><b>FAQ on all product pages is in English</b> on an otherwise fully German site — looks unfinished and unprofessional.</td><td>All /produkte/* pages</td><td>Insert the German FAQ from Part 2</td></tr>
+<tr><td>8</td><td><b>Instagram link goes to instagram.com</b> (generic homepage) instead of the @paypointpos.de profile.</td><td>/kontakt</td><td>Change link to https://instagram.com/paypointpos.de</td></tr>
+</tbody>
+</table>
+
+<h3 class="p3">Priority 3 — SEO</h3>
+<table>
+<thead><tr><th>#</th><th>Issue</th><th>Page(s)</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>9</td><td><b>Canonical URLs point to different paths than the ones linked:</b> /produkte/qr-code → canonical "qr-code-bestellloesung"; /produkte/webshop-app → "webshop-und-app". Google receives conflicting signals.</td><td>/produkte/qr-code, /produkte/webshop-app</td><td>Set canonical = actual URL (or set up 301 redirects)</td></tr>
+<tr><td>10</td><td><b>Meta description nearly identical everywhere</b> (homepage text reused on QR Code, Driver Terminal, Drive, Webshop, Restaurant, Privacy, Impressum).</td><td>Almost all pages</td><td>Write a unique description per page (suggestions in Part 2)</td></tr>
+<tr><td>11</td><td><b>Identical meta keywords on all pages</b> — keywords are irrelevant to Google; they do no harm. Lowest priority.</td><td>All pages</td><td>Optionally remove</td></tr>
+</tbody>
+</table>
+
+<h3 class="p4">Priority 4 — Cosmetics / Consistency</h3>
+<table>
+<thead><tr><th>#</th><th>Issue</th><th>Page(s)</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>12</td><td><b>Informal "du" and formal "Sie" wildly mixed</b>, sometimes within the same section ("Verkaufen Sie…" vs. "Verwalte deine Speisen…").</td><td>Webshop, Drive, Restaurant, Kasse</td><td>Standardize on "du" (fits the target audience and overall tone)</td></tr>
+<tr><td>13</td><td><b>Unsplash stock photos on the contact page</b> instead of own imagery; also hotlinked from unsplash.com (load time, dependency).</td><td>/kontakt</td><td>Use your own photos/screenshots</td></tr>
+<tr><td>14</td><td><b>Reused videos:</b> the Webshop page uses adjustments.mp4 (POS page) and webshop_demo.mp4 (QR page).</td><td>/produkte/webshop-app</td><td>Produce a dedicated webshop/app video</td></tr>
+<tr><td>15</td><td><b>FAQ accordion arrows render as "⌃"</b> (caret) — looks like a rendering bug.</td><td>All product pages</td><td>Check icon font / replace with SVG</td></tr>
+<tr><td>16</td><td><b>© "PayPoint POS UG (Haftungsbeschränkt)"</b> — correct German spelling is lowercase: "(haftungsbeschränkt)".</td><td>Footer, all pages</td><td>Fix the spelling</td></tr>
+</tbody>
+</table>
+
+<h2>Part 2: Ready-to-Use Corrected Copy</h2>
+<p class="sub">Note: the corrected copy below is kept in German, since the website itself is German.</p>
+
+<h3>A) QR Code page — new hero copy</h3>
+<div class="quote"><b>QR-CODE ORDERING</b><br>
+Deine Gäste scannen, bestellen und bezahlen direkt am Tisch. Jede Bestellung landet sofort in deiner Kasse – ohne Wartezeit, ohne Personalaufwand, ohne Fehler.</div>
+
+<h3>B) German FAQ for all product pages</h3>
+<div class="quote"><b>Wie unterstützt dich unsere Restaurant-Software?</b><br>
+Unsere Module decken alle Bereiche deiner Gastronomie ab. PayPoint bildet als Kassensystem den Kern – Module für Lieferung, QR-Bestellung, Webshop und Personal lassen sich flexibel dazubuchen.</div>
+<div class="quote"><b>Worauf ist das Kassensystem ausgelegt?</b><br>
+Auf Geschwindigkeit, fehlerfreie Bestellungen und reibungslose Abläufe zwischen Service, Küche und Lieferung – alles zentral gesteuert.</div>
+<div class="quote"><b>Welche Vorteile bieten dir die Module?</b><br>
+Weniger manuelle Arbeit, mehr Überblick, zentrale Abläufe – und volle Kontrolle über Kosten und Servicequalität.</div>
+<div class="quote"><b>Wie funktioniert gutes Restaurant-Marketing?</b><br>
+Durch die Kombination aus Stammkundenbindung, Sichtbarkeit auf den Lieferplattformen, Auswertungen deiner Verkaufszahlen und gezielten Aktionen über die Kanäle, die deine Gäste ohnehin nutzen.</div>
+
+<h3>C) Meta descriptions per page (max. ~155 characters)</h3>
+<table>
+<thead><tr><th>Page</th><th>Suggested description</th></tr></thead>
+<tbody>
+<tr><td>Kasse (POS)</td><td>Das Kassensystem für die Gastronomie: Bestellungen erfassen, Bons drucken, kassieren – auf Tablet, Laptop oder Smartphone. Monatlich kündbar.</td></tr>
+<tr><td>QR Code</td><td>Gäste bestellen per QR-Code direkt vom Tisch – jede Bestellung landet sofort in deiner Kasse. Schneller Service, mehr Umsatz, weniger Personalaufwand.</td></tr>
+<tr><td>Fahrer Terminal</td><td>Alle Fahrer und Lieferungen live im Blick: Echtzeit-Tracking, Schichtverwaltung und klare Abläufe für deinen Lieferdienst.</td></tr>
+<tr><td>PayPoint Drive</td><td>Die Fahrer-App für deinen Lieferdienst: Aufträge, Navigation, Zustellnachweis per Foto und automatische Abrechnung in einer App.</td></tr>
+<tr><td>Webshop &amp; App</td><td>Eigener Webshop und eigene App für dein Restaurant – ohne Provisionen an Lieferplattformen. Bestellungen laufen direkt in dein Kassensystem.</td></tr>
+<tr><td>Restaurant Mgmt.</td><td>Tische, Reservierungen und Bestellungen in einer Ansicht: digitaler Tischplan mit Echtzeit-Status für schnelleren Service.</td></tr>
+<tr><td>Preise (Pricing)</td><td>PayPoint Preise: Kassensystem ab 79 €/Monat inkl. Lieferanbindungen für Uber Eats, Wolt &amp; Lieferando. 30 Tage kostenlos testen, monatlich kündbar.</td></tr>
+<tr><td>Kontakt (Contact)</td><td>Kontaktiere PayPoint per WhatsApp, Telefon oder E-Mail – täglich 8–21 Uhr erreichbar. Kostenlose Beratung und 30 Tage Testphase.</td></tr>
+</tbody>
+</table>
+
+<h3>D) Impressum — correction</h3>
+<div class="quote"><b>Impressum</b><br>Angaben gemäß § 5 DDG.</div>
+<p>The rest can stay as is; just align phone number and email with the contact page.</p>
+
+<h3>E) Consistent form of address — sample corrections (Webshop page)</h3>
+<div class="quote"><b>Before:</b> "Verkaufen Sie direkt über Ihren eigenen Webshop und Ihre eigene App. Sparen Sie Provisionen…"</div>
+<div class="quote"><b>After:</b> "Verkaufe direkt über deinen eigenen Webshop und deine eigene App. Spar dir die Provisionen, stärke deine Marke und erhalte alle Bestellungen automatisch in deinem Kassensystem – ohne Drittanbieter, ohne Umwege."</div>
+<p>Apply the same change on PayPoint Drive ("Vermeiden Sie Stornos…" → "Vermeide Stornos und Reklamationen…") and Restaurant Management.</p>
+
+<h2>Recommended Order of Work</h2>
+<ol>
+<li>Terms link + Impressum (§ 5 DDG) + unify contact details — 30 minutes, legally relevant</li>
+<li>Complete the privacy policy — the most important legal item</li>
+<li>Fix the "0%" statistics on the pricing page — biggest conversion lever</li>
+<li>Insert QR hero copy + German FAQ — copy is ready above</li>
+<li>Canonicals + meta descriptions — SEO</li>
+<li>Form of address, videos, photos, minor items — step by step</li>
+</ol>
+
+</body>
+</html>

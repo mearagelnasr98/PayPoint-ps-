@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt – Beratung per WhatsApp, Telefon &amp; E-Mail | PayPoint POS</title>
+<meta name="description" content="Kontaktiere PayPoint per WhatsApp, Telefon oder E-Mail – täglich von 8 bis 21 Uhr erreichbar. Kostenlose Beratung und 30 Tage kostenlose Testphase.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://get-paypoint.de/kontakt">
+<meta property="og:title" content="Kontakt – Beratung per WhatsApp, Telefon &amp; E-Mail | PayPoint POS">
+<meta property="og:description" content="Kontaktiere PayPoint per WhatsApp, Telefon oder E-Mail – täglich von 8 bis 21 Uhr erreichbar. Kostenlose Beratung und 30 Tage Testphase.">
+<meta property="og:url" content="https://get-paypoint.de/kontakt">
+<meta property="og:image" content="https://get-paypoint.de/og.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="PayPoint POS">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "url": "https://get-paypoint.de/kontakt",
+  "name": "Kontakt | PayPoint POS",
+  "inLanguage": "de-DE",
+  "about": {
+    "@type": "Organization",
+    "name": "PayPoint POS UG (haftungsbeschränkt)",
+    "url": "https://get-paypoint.de/",
+    "logo": "https://get-paypoint.de/paypoint_full_horizontal_logo.png",
+    "email": "kontakt@paypointpos.de",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kolonnenstraße 8",
+      "postalCode": "10827",
+      "addressLocality": "Berlin",
+      "addressCountry": "DE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "telephone": "+49-176-14592342",
+      "email": "kontakt@paypointpos.de",
+      "availableLanguage": ["German"],
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    },
+    "sameAs": ["https://instagram.com/paypoint.de"]
+  }
+}
+</script>
+<style>
+  :root {
+    --background: #fafafa;
+    --card: #fefefe;
+    --black: #1c1c1c;
+    --heading: #0f172b;
+    --body: #314158;
+    --muted: #62748e;
+    --gray-text: #5e5e5e;
+    --primary: #00afef;
+    --border: #e5e5e5;
+    --shadow-btn: 0 8px 20px rgba(74, 151, 245, .22);
+    --font: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); font-size: 16px; line-height: 1.5; color: var(--body); background: var(--background); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1056px; margin: 0 auto; padding: 0 24px; }
+  a { text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 24px; border-radius: 9999px; font-weight: 500; font-size: 16px; transition: opacity .15s; }
+  .btn:hover { opacity: .9; }
+  .btn-primary { background: var(--primary); color: #fff; box-shadow: var(--shadow-btn); }
+  .btn-secondary { background: #fff; color: var(--heading); border: 1px solid var(--border); }
+  .btn-white { background: #fff; color: var(--heading); }
+  .arrow::after { content: "›"; font-size: 20px; line-height: 1; transform: translateY(-1px); }
+
+  nav { position: sticky; top: 0; background: rgba(250,250,250,.9); backdrop-filter: blur(8px); z-index: 50; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 96px; max-width: 1056px; margin: 0 auto; padding: 0 24px; }
+  .nav-inner .logo img { height: 48px; }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { color: var(--black); font-weight: 600; font-size: 17px; }
+  @media (max-width: 720px) { .nav-links a:not(.btn) { display: none; } }
+
+  .hero { text-align: center; padding: 64px 0 16px; }
+  .hero h1 { font-weight: 900; text-transform: uppercase; color: #333; font-size: clamp(44px, 8vw, 96px); line-height: .92; letter-spacing: -.02em; }
+  .hero .sub { max-width: 580px; margin: 24px auto 0; color: var(--muted); font-size: 19px; }
+  .hero .micro { margin-top: 14px; color: var(--gray-text); font-size: 14.5px; }
+
+  section { padding: 56px 0; }
+  .h-display { font-weight: 800; color: var(--heading); letter-spacing: -.025em; font-size: clamp(30px, 4.5vw, 48px); line-height: 1.05; }
+  .center { text-align: center; }
+  .lede { color: var(--muted); font-size: 18px; max-width: 640px; margin: 16px auto 0; }
+
+  /* Contact cards */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .ccard { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 32px 28px; display: flex; flex-direction: column; align-items: flex-start; transition: transform .2s, box-shadow .2s; }
+  a.ccard:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(15,23,43,.08); }
+  .ccard .icon { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 18px; background: rgba(0,175,239,.1); }
+  .ccard.wa .icon { background: rgba(37,211,102,.12); }
+  .ccard h3 { color: var(--heading); font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+  .ccard p { color: var(--muted); font-size: 15.5px; margin-bottom: 16px; }
+  .ccard .action { margin-top: auto; color: var(--primary); font-weight: 600; font-size: 15.5px; }
+  .ccard .action::after { content: " ›"; }
+
+  /* Form + info */
+  .lead { background: #f0f0f0; border-radius: 32px; padding: 56px 40px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; }
+  @media (max-width: 820px) { .lead { grid-template-columns: 1fr; padding: 36px 24px; } }
+  .lead h2 { font-weight: 800; color: var(--heading); letter-spacing: -.02em; font-size: clamp(28px, 4vw, 40px); line-height: 1.05; }
+  .lead .desc { color: var(--muted); margin-top: 14px; font-size: 17px; }
+  .lead .points { list-style: none; margin-top: 24px; }
+  .lead .points li { padding: 8px 0 8px 36px; position: relative; color: var(--body); font-size: 16.5px; }
+  .lead .points li::before { content: "✓"; position: absolute; left: 0; top: 7px; width: 26px; height: 26px; border-radius: 50%; background: rgba(0,175,239,.12); color: var(--primary); font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .lead .logos { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .lead .logos span { background: #fff; border-radius: 14px; padding: 12px 16px; display: flex; align-items: center; }
+  .lead .logos img { height: 26px; width: auto; }
+  .lead form { background: #fff; border-radius: 24px; padding: 32px; }
+  .lead .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .lead .row { grid-template-columns: 1fr; } }
+  .lead .field { margin-bottom: 16px; }
+  .lead label { display: block; font-size: 14px; color: var(--heading); font-weight: 600; margin-bottom: 6px; }
+  .lead input, .lead textarea { width: 100%; border: 1px solid var(--border); border-radius: 12px; padding: 0 14px; font-size: 15.5px; font-family: var(--font); background: #fafafa; color: var(--heading); }
+  .lead input { height: 48px; }
+  .lead textarea { padding: 12px 14px; min-height: 110px; resize: vertical; }
+  .lead input:focus, .lead textarea:focus { outline: 2px solid var(--primary); border-color: transparent; }
+  .lead button { width: 100%; height: 52px; border: none; cursor: pointer; font-family: var(--font); }
+  .lead .privacy { font-size: 12.5px; color: var(--gray-text); margin-top: 12px; text-align: center; }
+  .lead .privacy a { color: var(--primary); }
+
+  /* Map / address strip */
+  .info-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 720px) { .info-strip { grid-template-columns: 1fr; } }
+  .info-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 36px 32px; }
+  .info-card h3 { color: var(--heading); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .info-card p { color: var(--muted); font-size: 16px; }
+  .info-card .btn { margin-top: 20px; }
+  .hours { list-style: none; margin-top: 12px; }
+  .hours li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f1f1; color: var(--body); font-size: 15.5px; }
+  .hours li:last-child { border-bottom: none; }
+  .hours li b { color: var(--heading); font-weight: 600; }
+
+  .cta-band { background: var(--primary); text-align: center; padding: 88px 24px 110px; position: relative; }
+  .cta-band h2 { color: #fff; font-weight: 800; letter-spacing: -.02em; font-size: clamp(30px, 5vw, 56px); line-height: 1.05; max-width: 900px; margin: 0 auto; }
+  .cta-band .sub { color: rgba(255,255,255,.85); font-size: 18px; margin-top: 16px; }
+  .cta-band .btn { margin-top: 40px; min-width: min(640px, 80vw); }
+  .cta-band svg.curve { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 36px; display: block; }
+
+  footer { background: var(--background); padding: 64px 0 32px; }
+  .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 40px; }
+  @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .foot-grid { grid-template-columns: 1fr; } }
+  footer img.flogo { height: 44px; margin-bottom: 18px; }
+  footer .addr { color: var(--gray-text); font-size: 15px; }
+  footer h4 { color: #8a8a8a; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+  footer .cols a { display: block; color: var(--body); font-size: 15px; margin-bottom: 12px; }
+  .grow-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .grow-card h5 { color: var(--heading); font-size: 16px; margin-bottom: 8px; }
+  .grow-card p { color: var(--muted); font-size: 14.5px; margin-bottom: 16px; }
+  .grow-card .btn { height: 42px; font-size: 15px; }
+  .copyright { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 24px; text-align: center; color: #9a9a9a; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="https://get-paypoint.de"><img src="https://get-paypoint.de/paypoint_full_horizontal_logo.png" alt="PayPoint Logo"></a>
+    <div class="nav-links">
+      <a href="https://get-paypoint.de/preise">Preise</a>
+      <a href="https://get-paypoint.de/kontakt">Kontakt</a>
+      <a class="btn btn-primary" href="#beratung">Jetzt starten</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Sprich<br>mit uns.</h1>
+    <p class="sub">Fragen zu PayPoint, zur Einrichtung oder zu den Preisen? Wir antworten schnell und direkt – am liebsten per WhatsApp.</p>
+    <p class="micro">24 Stunden erreichbar – rund um die Uhr · Antwort auf E-Mails innerhalb eines Werktages</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <a class="ccard wa" href="https://wa.me/4917614592342" target="_blank" rel="noopener">
+        <div class="icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Die schnellste Antwort – schreib uns direkt, wir melden uns sofort.</p>
+        <span class="action">Nachricht senden</span>
+      </a>
+
+      <a class="ccard" href="tel:+4917614592342">
+        <div class="icon">📞</div>
+        <h3>Telefon</h3>
+        <p>Rund um die Uhr persönlich für dich da – 24/7, auch am Wochenende.</p>
+        <span class="action">+49 176 14592342</span>
+      </a>
+
+      <a class="ccard" href="mailto:kontakt@paypointpos.de">
+        <div class="icon">✉️</div>
+        <h3>E-Mail</h3>
+        <p>Antwort innerhalb eines Werktages – ideal für ausführliche Anfragen.</p>
+        <span class="action">kontakt@paypointpos.de</span>
+      </a>
+
+      <a class="ccard" href="https://www.google.com/maps/search/?api=1&query=Kolonnenstra%C3%9Fe+8%2C+10827+Berlin" target="_blank" rel="noopener">
+        <div class="icon">📍</div>
+        <h3>Adresse</h3>
+        <p>Kolonnenstraße 8 10827 Berlin Deutschland</p>
+        <span class="action">Route anzeigen</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section style="padding-top: 16px;" id="beratung">
+  <div class="wrap">
+    <div class="lead">
+      <div>
+        <h2>Kostenlose Beratung &amp; Testphase</h2>
+        <p class="desc">Wir zeigen dir, wie PayPoint dein Restaurant effizienter macht und dir hilft, mehr Gewinn zu behalten. Ganz ohne Verpflichtung.</p>
+        <ul class="points">
+          <li>30 Tage kostenlos testen</li>
+          <li>Monatlich kündbar – keine Vertragsbindung</li>
+          <li>24/7 Premium Support, direkt per WhatsApp</li>
+        </ul>
+        <div class="logos">
+          <span><img src="https://get-paypoint.de/assets/platforms/uber_eats.png" alt="Uber Eats" loading="lazy"></span>
+          <span><img src="https://get-paypoint.de/assets/platforms/wolt.png" alt="Wolt" loading="lazy"></span>
+          <span><img src="https://get-paypoint.de/assets/platforms/lieferando.png" alt="Lieferando" loading="lazy"></span>
+          <span><img src="https://get-paypoint.de/google-logo.png" alt="Google" loading="lazy"></span>
+        </div>
+      </div>
+      <form action="#" method="post">
+        <div class="row">
+          <div class="field">
+            <label for="f-name">Vollständiger Name</label>
+            <input id="f-name" name="name" type="text" placeholder="Max Mustermann" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">E-Mail-Adresse</label>
+            <input id="f-email" name="email" type="email" placeholder="max@mustermann.de" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="f-phone">Telefonnummer</label>
+            <input id="f-phone" name="phone" type="tel" placeholder="+49 170 1234567" autocomplete="tel" required>
+          </div>
+          <div class="field">
+            <label for="f-company">Firma</label>
+            <input id="f-company" name="company" type="text" placeholder="Restaurant Mustermann" autocomplete="organization">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-msg">Deine Nachricht (optional)</label>
+          <textarea id="f-msg" name="message" placeholder="Erzähl uns kurz von deinem Betrieb – z. B. Restaurant, Lieferdienst, Anzahl Standorte…"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Kostenlos anfragen</button>
+        <p class="privacy">Mit dem Absenden stimmst du unserer <a href="https://get-paypoint.de/datenschutz">Datenschutzerklärung</a> zu.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top: 16px;">
+  <div class="wrap">
+    <div class="info-strip">
+      <div class="info-card">
+        <h3>24-Stunden-Support</h3>
+        <p>Wir sind rund um die Uhr für dich da – auch nachts und am Wochenende, wenn in deinem Betrieb am meisten los ist.</p>
+        <ul class="hours">
+          <li><b>Montag – Sonntag</b><span>24 Stunden erreichbar</span></li>
+          <li><b>WhatsApp &amp; Telefon</b><span>Sofortige Antwort</span></li>
+          <li><b>E-Mail</b><span>Antwort innerhalb eines Werktages</span></li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Folge uns auf Instagram</h3>
+        <p>Produkt-Updates, Einblicke und Tipps für deinen Gastro-Betrieb – auf @paypoint.de.</p>
+        <a class="btn btn-secondary arrow" href="https://instagram.com/paypoint.de" target="_blank" rel="noopener">@paypoint.de folgen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Starte deine kostenlose Testphase.</h2>
+  <p class="sub">30 Tage kostenlos · monatlich kündbar · Einrichtung in kurzer Zeit</p>
+  <a class="btn btn-white" href="#beratung">Testphase starten</a>
+  <svg class="curve" viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C480,0 960,0 1440,40 L1440,40 L0,40 Z" fill="#fafafa"/></svg>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="flogo" src="https://get-paypoint.de/paypoint_full_horizontal_logo.png" alt="PayPoint Logo" loading="lazy">
+        <p class="addr">Kolonnenstraße 8 10827 Berlin</p>
+      </div>
+      <div class="cols">
+        <h4>Produkte</h4>
+        <a href="https://get-paypoint.de/produkte/kasse">Kassensystem</a>
+        <a href="https://get-paypoint.de/produkte/qr-code">QR-Code Bestellung</a>
+        <a href="https://get-paypoint.de/produkte/fahrer-terminal">Fahrer Terminal</a>
+        <a href="https://get-paypoint.de/produkte/paypoint-drive">PayPoint Drive</a>
+        <a href="https://get-paypoint.de/produkte/webshop-app">Webshop &amp; App</a>
+        <a href="https://get-paypoint.de/produkte/restaurant-management">Restaurant Management</a>
+      </div>
+      <div class="cols">
+        <h4>Unternehmen</h4>
+        <a href="https://get-paypoint.de/preise">Preise</a>
+        <a href="https://get-paypoint.de/kontakt">Kontakt</a>
+        <a href="https://get-paypoint.de/datenschutz">Datenschutz</a>
+        <a href="https://get-paypoint.de/impressum">Impressum</a>
+      </div>
+      <div>
+        <div class="grow-card">
+          <h5>Bereit zu wachsen?</h5>
+          <p>Erhalten Sie eine kostenlose Beratung und sehen Sie, wie PayPoint in Ihr Restaurant passt.</p>
+          <a class="btn btn-primary arrow" href="#beratung">Jetzt starten</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">© PayPoint POS UG (haftungsbeschränkt). Alle Rechte vorbehalten.</div>
+  </div>
+</footer>
+
+</body>
+</html>
