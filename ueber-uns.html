@@ -4,26 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Über uns – PayPoint POS</title>
-  <meta name="description" content="Lerne das Team hinter PayPoint kennen: unsere Geschichte, unsere Werte und was unsere Kunden über uns sagen." />
+  <meta name="description" content="Warum es PayPoint gibt, wer dahintersteckt und wofür wir jeden Tag arbeiten." />
   <meta name="theme-color" content="#2563eb" />
   <style>
 /* =====================================================================
- * PayPoint – Über uns  (heller SaaS-Stil wie get-paypoint.de)
- * Eigenständige HTML-Seite. Such im Code nach  "BEARBEITEN"  bzw.
- * "BILD EINFÜGEN"  – dort trägst du Texte und Fotos ein.
+ * PayPoint – Über uns  (neuer Entwurf)
+ * Such im Code nach  "BEARBEITEN"  und  "BILD EINFÜGEN".
  * ===================================================================== */
 :root{
   --bg:#ffffff;
-  --bg-soft:#f5f8fc;        /* zarte graue Sektionen */
-  --text:#0b1220;           /* dunkle Überschriften  */
-  --body:#475569;           /* Fließtext             */
-  --muted:#64748b;
-  --line:#e6ebf2;
-  --accent:#2563eb;         /* Brand-Blau            */
+  --ink:#0a0f1c;          /* fast schwarz, Überschriften */
+  --body:#51607a;
+  --muted:#7a879c;
+  --line:#e9edf4;
+  --soft:#f4f7fc;
+  --accent:#2563eb;
   --accent-2:#3b82f6;
-  --dark:#0b1220;           /* Footer                */
-  --shadow:0 10px 30px rgba(15,23,42,.08);
-  --shadow-lg:0 20px 50px rgba(37,99,235,.18);
+  --night:#0a0f1c;        /* dunkle Bänder/Footer */
+  --night-2:#111a2e;
+  --shadow:0 14px 40px rgba(10,15,28,.10);
+  --shadow-blue:0 18px 44px rgba(37,99,235,.22);
 }
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -33,165 +33,160 @@ body{
   line-height:1.65; -webkit-font-smoothing:antialiased;
 }
 a{color:inherit; text-decoration:none;}
-.container{max-width:1120px; margin:0 auto; padding:0 22px;}
-
-h1,h2,h3{color:var(--text); line-height:1.15;}
-h1{font-size:clamp(34px,5.5vw,60px); margin:0 0 18px; letter-spacing:-.02em;}
-h2{font-size:clamp(28px,3.6vw,40px); margin:0 0 14px; letter-spacing:-.02em;}
-.lead{font-size:19px; color:var(--muted); max-width:680px;}
-.eyebrow{
-  display:inline-block; color:var(--accent); font-weight:700; font-size:13px;
-  letter-spacing:.08em; text-transform:uppercase; margin:0 0 12px;
-  background:rgba(37,99,235,.08); padding:6px 12px; border-radius:999px;
+.wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
+h1,h2,h3{color:var(--ink); line-height:1.12; letter-spacing:-.02em;}
+h1{font-size:clamp(36px,5.4vw,62px); margin:0;}
+h2{font-size:clamp(28px,3.6vw,42px); margin:0 0 16px;}
+.lead{font-size:19px; color:var(--muted); line-height:1.7;}
+.kicker{
+  display:inline-block; font-size:12.5px; font-weight:800; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 14px;
 }
-.center{text-align:center;}
-.center .lead{margin-left:auto; margin-right:auto;}
-
-/* ---- Buttons ---- */
 .btn{
-  display:inline-block; border:none; cursor:pointer; font-weight:700; font-size:16px;
-  padding:14px 26px; border-radius:12px; transition:transform .06s ease, box-shadow .2s ease;
+  display:inline-flex; align-items:center; gap:8px; border:none; cursor:pointer;
+  font-weight:700; font-size:16px; padding:15px 28px; border-radius:14px;
+  transition:transform .06s ease, box-shadow .2s ease, background .2s ease;
 }
 .btn:active{transform:translateY(1px);}
-.btn-primary{background:var(--accent); color:#fff; box-shadow:var(--shadow-lg);}
+.btn-primary{background:var(--accent); color:#fff; box-shadow:var(--shadow-blue);}
 .btn-primary:hover{background:var(--accent-2);}
-.btn-ghost{background:#fff; color:var(--text); border:1px solid var(--line);}
-.btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+.btn-line{background:transparent; color:var(--ink); border:1.5px solid var(--line);}
+.btn-line:hover{border-color:var(--accent); color:var(--accent);}
 
-/* ---- Topbar ---- */
-.topbar{
-  position:sticky; top:0; z-index:30;
-  display:flex; align-items:center; gap:18px; padding:14px 22px;
-  background:rgba(255,255,255,.85); backdrop-filter:blur(10px);
+/* ---- Nav ---- */
+.nav{
+  position:sticky; top:0; z-index:40; display:flex; align-items:center; gap:18px;
+  padding:16px 24px; background:rgba(255,255,255,.82); backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
 }
-.brand{display:flex; align-items:center; gap:9px; font-weight:800; font-size:20px; color:var(--text);}
-.brand .logo{font-size:24px;}
-.nav{display:flex; gap:4px; margin-left:auto;}
-.nav a{padding:9px 14px; border-radius:9px; color:var(--muted); font-weight:600;}
-.nav a:hover{background:var(--bg-soft); color:var(--text);}
-.topbar .btn{padding:10px 18px; font-size:15px;}
+.logo{display:flex; align-items:center; gap:9px; font-weight:800; font-size:20px; color:var(--ink);}
+.logo .mark{font-size:24px;}
+.nav-links{display:flex; gap:2px; margin-left:auto;}
+.nav-links a{padding:10px 14px; border-radius:10px; color:var(--muted); font-weight:600;}
+.nav-links a:hover{background:var(--soft); color:var(--ink);}
+.nav .btn{padding:11px 18px; font-size:15px;}
 
-/* ---- Sections ---- */
-section{padding:84px 0;}
-.soft{background:var(--bg-soft);}
+/* ===== HERO (asymmetrisch: Text links, Panel rechts) ===== */
+.hero{padding:74px 0 64px;}
+.hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:48px; align-items:center;}
+.hero h1 em{font-style:normal; color:var(--accent);}
+.hero .lead{margin:22px 0 30px; max-width:520px;}
+.hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
 
-/* ---- Hero ---- */
-.hero{
-  padding:96px 0 72px; text-align:center;
-  background:
-    radial-gradient(800px 360px at 50% -40%, rgba(37,99,235,.14), transparent 70%);
+/* Panel rechts: Karte mit Kennzahlen */
+.panel{
+  background:linear-gradient(160deg,var(--night),var(--night-2));
+  border-radius:24px; padding:34px; color:#dbe4f3; box-shadow:var(--shadow);
 }
-.hero h1 span.caps{display:block; text-transform:uppercase; color:var(--accent);}
-.hero .lead{margin:0 auto;}
-.hero-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:30px;}
+.panel .p-tag{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#7f93b8; font-weight:700;}
+.panel .p-quote{font-size:21px; line-height:1.5; color:#fff; margin:14px 0 24px; font-weight:600;}
+.panel .p-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; border-top:1px solid rgba(255,255,255,.1); padding-top:22px;}
+.panel .p-num{font-size:30px; font-weight:800; color:#fff;}
+.panel .p-lbl{font-size:13px; color:#8aa0c4;}
 
-/* ---- Grids & Cards ---- */
-.grid{display:grid; gap:22px;}
-.grid-3{grid-template-columns:repeat(3,1fr);}
-.grid-2{grid-template-columns:repeat(2,1fr);}
-.card{
-  background:#fff; border:1px solid var(--line); border-radius:18px;
-  padding:28px; box-shadow:var(--shadow);
-}
-.card .icon{
-  width:52px; height:52px; border-radius:14px; display:flex; align-items:center;
-  justify-content:center; font-size:26px; margin-bottom:16px;
-  background:rgba(37,99,235,.1);
-}
-.card h3{margin:0 0 8px; font-size:21px;}
-.card p{margin:0; color:var(--muted);}
+/* ===== MISSION BAND (dunkel, voll Breite) ===== */
+.mission{background:var(--night); color:#fff; padding:66px 0;}
+.mission .wrap{display:flex; gap:30px; align-items:center; flex-wrap:wrap;}
+.mission .kicker{color:var(--accent-2);}
+.mission h2{color:#fff; flex:1; min-width:280px; font-size:clamp(24px,3vw,34px);}
+.mission p{color:#aab8d2; max-width:430px; margin:0; font-size:17px;}
 
-/* ---- Historie / Timeline ---- */
-.timeline{position:relative; margin-top:34px; padding-left:30px;}
-.timeline::before{content:""; position:absolute; left:9px; top:8px; bottom:8px; width:2px; background:var(--line);}
-.tl-item{position:relative; padding:0 0 30px 24px;}
-.tl-item::before{
-  content:""; position:absolute; left:-9px; top:4px; width:18px; height:18px;
-  border-radius:50%; background:var(--accent); border:4px solid var(--bg-soft);
-}
-.tl-year{font-weight:800; color:var(--accent); font-size:18px;}
-.tl-item h3{margin:2px 0 6px; font-size:21px;}
-.tl-item p{margin:0; color:var(--muted);}
+/* ===== STORY (Erzählung, 2 Spalten) ===== */
+.story{padding:84px 0;}
+.story-grid{display:grid; grid-template-columns:.8fr 1.2fr; gap:50px;}
+.story-grid .col p{margin:0 0 16px; font-size:17px; color:var(--body);}
+.story-grid .col p:first-child{font-size:20px; color:var(--ink); font-weight:600;}
 
-/* ---- Zahlen ---- */
-.stats{grid-template-columns:repeat(4,1fr); text-align:center;}
-.stat{padding:10px;}
-.stat .num{font-size:44px; font-weight:800; color:var(--accent); letter-spacing:-.02em;}
-.stat .lbl{color:var(--muted); font-size:15px;}
+/* ===== TIMELINE (horizontale Karten) ===== */
+.steps{padding:84px 0; background:var(--soft);}
+.steps-row{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:36px;}
+.step{background:#fff; border:1px solid var(--line); border-radius:18px; padding:24px; box-shadow:var(--shadow);}
+.step .yr{display:inline-block; font-weight:800; color:var(--accent); background:rgba(37,99,235,.1); padding:4px 12px; border-radius:999px; font-size:14px;}
+.step h3{margin:14px 0 6px; font-size:19px;}
+.step p{margin:0; color:var(--muted); font-size:14.5px;}
 
-/* ---- Team ---- */
-.team-grid{grid-template-columns:repeat(3,1fr);}
-.member{
-  background:#fff; border:1px solid var(--line); border-radius:18px;
-  overflow:hidden; text-align:center; box-shadow:var(--shadow);
-  transition:transform .15s ease, box-shadow .2s ease;
-}
-.member:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg);}
-/* Foto-Platzhalter: ersetze <span>…</span> durch  <img src="images/foto.jpg" alt="Name"> */
-.photo{
-  aspect-ratio:1/1; width:100%; display:flex; align-items:center; justify-content:center;
-  background:linear-gradient(135deg,#eaf1ff,#dbe7ff); color:#7c93b8; font-size:14px; font-weight:600;
-}
-.photo img{width:100%; height:100%; object-fit:cover; display:block;}
-.member-body{padding:20px;}
-.member-body h3{margin:0; font-size:20px;}
-.member-role{color:var(--accent); font-weight:600; font-size:14px; margin:3px 0 8px;}
-.member-body p{margin:0; color:var(--muted); font-size:14px;}
+/* ===== WERTE ===== */
+.values{padding:84px 0;}
+.values-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px;}
+.value{padding:28px; border:1px solid var(--line); border-radius:18px; background:#fff;}
+.value .ic{width:54px; height:54px; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:26px; background:rgba(37,99,235,.1); margin-bottom:16px;}
+.value h3{margin:0 0 8px; font-size:20px;}
+.value p{margin:0; color:var(--muted);}
 
-/* ---- Testimonials ---- */
-.quote{background:#fff; border:1px solid var(--line); border-radius:18px; padding:28px; box-shadow:var(--shadow);}
-.quote .stars{color:#fbbf24; font-size:18px; margin-bottom:12px;}
-.quote blockquote{margin:0 0 18px; font-size:18px; color:var(--text); font-weight:500;}
-.quote-author{display:flex; align-items:center; gap:13px;}
-.avatar{
-  width:50px; height:50px; border-radius:50%; flex:0 0 auto; overflow:hidden;
-  display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800;
-  background:linear-gradient(135deg,var(--accent),var(--accent-2));
-}
-.avatar img{width:100%; height:100%; object-fit:cover;}
-.quote-author .who{font-weight:700; color:var(--text);}
-.quote-author .where{color:var(--muted); font-size:14px;}
+/* ===== TEAM ===== */
+.team{padding:84px 0; background:var(--soft);}
+.team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px;}
+.person{background:#fff; border:1px solid var(--line); border-radius:20px; overflow:hidden; box-shadow:var(--shadow); transition:transform .15s ease, box-shadow .2s ease;}
+.person:hover{transform:translateY(-5px); box-shadow:var(--shadow-blue);}
+/* BILD EINFÜGEN: ersetze <span>…</span> durch <img src="images/foto.jpg" alt="Name"> */
+.face{aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; background:linear-gradient(150deg,#e7efff,#d4e2ff); color:#7c93b8; font-weight:600; font-size:14px;}
+.face img{width:100%; height:100%; object-fit:cover; display:block;}
+.person .body{padding:20px;}
+.person h3{margin:0; font-size:20px;}
+.person .role{color:var(--accent); font-weight:600; font-size:14px; margin:3px 0 8px;}
+.person .body p{margin:0; color:var(--muted); font-size:14px;}
 
-/* ---- CTA ---- */
-.cta{
-  background:linear-gradient(135deg,var(--accent),#1d4ed8);
-  border-radius:28px; padding:56px 28px; text-align:center; color:#fff; box-shadow:var(--shadow-lg);
-}
-.cta h2{color:#fff;}
-.cta .lead{color:#dbe7ff;}
-.cta .btn-primary{background:#fff; color:var(--accent); box-shadow:none;}
-.cta .btn-primary:hover{background:#eef3ff;}
+/* ===== GRÜNDER-ZITAT ===== */
+.founder{padding:84px 0;}
+.founder-box{display:grid; grid-template-columns:200px 1fr; gap:36px; align-items:center; background:#fff; border:1px solid var(--line); border-radius:24px; padding:36px; box-shadow:var(--shadow);}
+/* BILD EINFÜGEN: ersetze <span>…</span> durch <img src="images/gruender.jpg" alt="Mearag El Nasr"> */
+.founder-face{aspect-ratio:1/1; border-radius:20px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:linear-gradient(150deg,#e7efff,#d4e2ff); color:#7c93b8; font-weight:600; font-size:14px;}
+.founder-face img{width:100%; height:100%; object-fit:cover;}
+.founder blockquote{margin:0; font-size:clamp(20px,2.4vw,26px); color:var(--ink); line-height:1.45; font-weight:600;}
+.founder .sig{margin-top:18px; font-size:15px; color:var(--muted);}
+.founder .sig strong{color:var(--ink);}
 
-/* ---- Footer ---- */
-footer{background:var(--dark); color:#aab6c8; padding:54px 0 30px;}
-.foot-grid{display:flex; flex-wrap:wrap; gap:30px; justify-content:space-between;}
-footer .brand{color:#fff;}
+/* ===== TESTIMONIALS ===== */
+.voices{padding:84px 0; background:var(--soft);}
+.voices-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:36px;}
+.voice{background:#fff; border:1px solid var(--line); border-radius:18px; padding:28px; box-shadow:var(--shadow);}
+.voice .stars{color:#fbbf24; font-size:18px; margin-bottom:12px;}
+.voice blockquote{margin:0 0 18px; font-size:18px; color:var(--ink); font-weight:500;}
+.voice .who-row{display:flex; align-items:center; gap:13px;}
+.av{width:50px; height:50px; border-radius:50%; overflow:hidden; flex:0 0 auto; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; background:linear-gradient(135deg,var(--accent),var(--accent-2));}
+.av img{width:100%; height:100%; object-fit:cover;}
+.voice .who{font-weight:700; color:var(--ink);}
+.voice .where{color:var(--muted); font-size:14px;}
+
+/* ===== CTA ===== */
+.cta{padding:30px 0 90px;}
+.cta-box{background:linear-gradient(135deg,var(--accent),#1d4ed8); border-radius:28px; padding:60px 28px; text-align:center; color:#fff; box-shadow:var(--shadow-blue);}
+.cta-box h2{color:#fff;}
+.cta-box p{color:#dbe7ff; font-size:18px; margin:0 auto 26px; max-width:520px;}
+.cta-box .btn-primary{background:#fff; color:var(--accent); box-shadow:none;}
+.cta-box .btn-primary:hover{background:#eef3ff;}
+
+/* ===== FOOTER ===== */
+footer{background:var(--night); color:#9fb0cc; padding:56px 0 30px;}
+.foot{display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between;}
+footer .logo{color:#fff;}
 footer h4{color:#fff; margin:0 0 12px; font-size:15px;}
-footer a{display:block; color:#aab6c8; padding:3px 0; font-size:14px;}
+footer a{display:block; color:#9fb0cc; padding:3px 0; font-size:14px;}
 footer a:hover{color:#fff;}
-.socials{display:flex; gap:16px; margin-top:14px; font-size:14px;}
-.socials a{display:inline;}
-.copyright{margin-top:34px; font-size:13px; border-top:1px solid #1e2a3d; padding-top:20px; color:#7e8ba0;}
+.soc{display:flex; gap:16px; margin-top:14px;}
+.soc a{display:inline;}
+.copy{margin-top:34px; border-top:1px solid #1c2740; padding-top:20px; font-size:13px; color:#73849f;}
 
-/* ---- Responsive ---- */
-@media(max-width:880px){
-  .grid-3,.team-grid{grid-template-columns:1fr 1fr;}
-  .stats{grid-template-columns:1fr 1fr;}
+/* ===== Responsive ===== */
+@media(max-width:920px){
+  .hero-grid,.story-grid,.founder-box{grid-template-columns:1fr;}
+  .steps-row,.values-grid,.team-grid,.voices-grid{grid-template-columns:1fr 1fr;}
+  .founder-box{text-align:center;}
+  .founder-face{max-width:200px; margin:0 auto;}
 }
 @media(max-width:600px){
-  .nav{display:none;}
-  .grid-3,.grid-2,.team-grid,.stats{grid-template-columns:1fr;}
-  section{padding:60px 0;}
+  .nav-links{display:none;}
+  .steps-row,.values-grid,.team-grid,.voices-grid,.panel .p-grid{grid-template-columns:1fr;}
+  section, .hero{padding-left:0; padding-right:0;}
 }
   </style>
 </head>
 <body>
 
   <!-- ===================== NAVIGATION ===================== -->
-  <header class="topbar">
-    <a href="/" class="brand"><span class="logo">☕</span> PayPoint</a>
-    <nav class="nav">
+  <header class="nav">
+    <a href="/" class="logo"><span class="mark">☕</span> PayPoint</a>
+    <nav class="nav-links">
       <a href="/produkte/kasse">Produkte</a>
       <a href="/preise">Preise</a>
       <a href="/ueber-uns">Über uns</a>
@@ -202,127 +197,130 @@ footer a:hover{color:#fff;}
 
   <!-- ===================== HERO ===================== -->
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Über PayPoint</p>
-      <h1>Aus der Gastro.<span class="caps">Für die Gastro.</span></h1>
-      <!-- BEARBEITEN: kurzer Einleitungssatz über euch -->
-      <p class="lead">
-        PayPoint ist aus dem echten Alltag in der Gastronomie entstanden – mit einem
-        Ziel: ein einziges System für Kasse, Lieferplattformen und Fahrer-Management.
-        Hier erfährst du, wer dahintersteckt.
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker">Über uns</p>
+        <!-- BEARBEITEN: Headline -->
+        <h1>Wir bauen die Kasse, die wir uns selbst <em>gewünscht</em> hätten.</h1>
+        <p class="lead">
+          PayPoint ist in Berlin entstanden – nicht im Konferenzraum, sondern hinter
+          dem Tresen. Wir kennen den Stress von fünf Tablets, klingelnden Telefonen und
+          Fahrern, die niemand findet. Genau dafür gibt es uns.
+        </p>
+        <div class="hero-cta">
+          <a href="#team" class="btn btn-primary">Lern das Team kennen</a>
+          <a href="#story" class="btn btn-line">Unsere Geschichte</a>
+        </div>
+      </div>
+
+      <!-- Info-Panel rechts -->
+      <aside class="panel">
+        <div class="p-tag">PayPoint in Zahlen</div>
+        <!-- BEARBEITEN: Panel-Zitat -->
+        <p class="p-quote">„Ein System. Alle Bestellungen. Kein Chaos mehr.“</p>
+        <div class="p-grid">
+          <div><div class="p-num">50+</div><div class="p-lbl">Restaurants</div></div>
+          <div><div class="p-num">3</div><div class="p-lbl">Plattformen integriert</div></div>
+          <div><div class="p-num">24/7</div><div class="p-lbl">Support per WhatsApp</div></div>
+          <div><div class="p-num">79 €</div><div class="p-lbl">ab pro Monat</div></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== MISSION BAND ===================== -->
+  <section class="mission">
+    <div class="wrap">
+      <div style="flex:1; min-width:280px;">
+        <p class="kicker">Unsere Mission</p>
+        <!-- BEARBEITEN -->
+        <h2>Gastronom:innen sollen kochen und Gäste glücklich machen – nicht Technik jonglieren.</h2>
+      </div>
+      <p>
+        Deshalb bündeln wir Kasse, Lieferplattformen, QR-Bestellung und Fahrer-Management
+        in einem einzigen, ehrlichen System – bezahlbar und ohne Knebelverträge.
       </p>
-      <div class="hero-actions">
-        <a href="#team" class="btn btn-primary">Team kennenlernen</a>
-        <a href="#story" class="btn btn-ghost">Unsere Geschichte</a>
+    </div>
+  </section>
+
+  <!-- ===================== STORY ===================== -->
+  <section class="story" id="story">
+    <div class="wrap story-grid">
+      <div>
+        <p class="kicker">Warum es PayPoint gibt</p>
+        <h2>Aus einem echten Problem geboren.</h2>
+      </div>
+      <div class="col">
+        <!-- BEARBEITEN: eure Geschichte -->
+        <p>Es begann mit einem ganz normalen Freitagabend: fünf Tablets, drei piepende Plattformen, ein Telefon, das nicht stillstand – und mittendrin Bestellungen, die untergingen.</p>
+        <p>Wir haben uns gefragt, warum es kein System gibt, das einfach alles zusammenbringt. Eines, das nicht ein Vermögen kostet, das man nicht studieren muss und hinter dem echte Menschen stehen, wenn mal etwas klemmt.</p>
+        <p>Weil es das nicht gab, haben wir es selbst gebaut. Heute läuft PayPoint in über 50 Betrieben – und wir verbessern es jede Woche mit dem Feedback aus den Küchen, für die wir es machen.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== WERTE / VERSPRECHEN ===================== -->
-  <section>
-    <div class="container">
-      <p class="eyebrow">Wofür wir stehen</p>
-      <h2>Drei Versprechen</h2>
-      <div class="grid grid-3" style="margin-top:34px;">
-        <div class="card">
-          <div class="icon">🍔</div>
-          <h3>Gastro-DNA</h3>
-          <p>Jede Funktion wird unter echtem Freitagabend-Stress getestet – nicht am Reißbrett.</p>
-        </div>
-        <div class="card">
-          <div class="icon">💸</div>
-          <h3>Ehrliche Preise</h3>
-          <p>Transparente Tarife ab 79 €/Monat. Monatlich kündbar, keine versteckten Kosten.</p>
-        </div>
-        <div class="card">
-          <div class="icon">📞</div>
-          <h3>24/7 echte Menschen</h3>
-          <p>Direkter Draht per WhatsApp – kein Ticket-System, keine Warteschleife.</p>
-        </div>
+  <!-- ===================== TIMELINE / STEPS ===================== -->
+  <section class="steps">
+    <div class="wrap">
+      <p class="kicker">Unser Weg</p>
+      <h2>Vom Frust zur Lösung</h2>
+      <!-- BEARBEITEN: Jahre & Texte. Einen .step-Block kopieren für mehr Stationen. -->
+      <div class="steps-row">
+        <div class="step"><span class="yr">2024</span><h3>Die Idee</h3><p>Der Plan für ein System, das alle Bestellkanäle vereint.</p></div>
+        <div class="step"><span class="yr">2025</span><h3>Erste Kunden</h3><p>Die ersten Berliner Betriebe gehen mit PayPoint live.</p></div>
+        <div class="step"><span class="yr">2026</span><h3>50+ Betriebe</h3><p>Cloud-TSE, Fahrer-App und eigener Webshop kommen dazu.</p></div>
+        <div class="step"><span class="yr">Heute</span><h3>Und weiter</h3><p>Jede Woche neue Funktionen – direkt aus dem Kundenfeedback.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== HISTORIE / TIMELINE ===================== -->
-  <section id="story" class="soft">
-    <div class="container">
-      <p class="eyebrow">Unser Weg</p>
-      <h2>Die PayPoint-Geschichte</h2>
-      <p class="lead">So sind wir entstanden – und wohin wir wollen.</p>
-
-      <!-- BEARBEITEN: Jahre, Überschriften und Texte anpassen.
-           Einen .tl-item-Block kopieren für weitere Stationen. -->
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-year">2024</div>
-          <h3>Die Idee</h3>
-          <p>Aus dem Frust über fünf Tablets nebeneinander entsteht der Plan für ein einziges System.</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">2025</div>
-          <h3>Erste Restaurants</h3>
-          <p>Die ersten Betriebe in Berlin arbeiten live mit PayPoint und geben täglich Feedback.</p>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">2026</div>
-          <h3>Über 50 Kunden</h3>
-          <p>PayPoint wächst – mit Cloud-TSE, Fahrer-App, eigenem Webshop und vielem mehr.</p>
-        </div>
-        <!-- weitere Station hier einfügen -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== ZAHLEN ===================== -->
-  <section>
-    <div class="container">
-      <!-- BEARBEITEN: eure echten Zahlen -->
-      <div class="grid stats">
-        <div class="stat"><div class="num">50+</div><div class="lbl">Restaurants vertrauen uns</div></div>
-        <div class="stat"><div class="num">3</div><div class="lbl">Lieferplattformen integriert</div></div>
-        <div class="stat"><div class="num">24/7</div><div class="lbl">Erreichbarer Support</div></div>
-        <div class="stat"><div class="num">79 €</div><div class="lbl">ab pro Monat</div></div>
+  <!-- ===================== WERTE ===================== -->
+  <section class="values">
+    <div class="wrap">
+      <p class="kicker">Wofür wir stehen</p>
+      <h2>Drei Dinge, auf die du dich verlassen kannst</h2>
+      <div class="values-grid">
+        <div class="value"><div class="ic">🍔</div><h3>Gastro-DNA</h3><p>Jede Funktion wird unter echtem Freitagabend-Stress getestet – nicht am Reißbrett.</p></div>
+        <div class="value"><div class="ic">💸</div><h3>Ehrliche Preise</h3><p>Ab 79 €/Monat, monatlich kündbar. Keine versteckten Kosten, keine Knebelverträge.</p></div>
+        <div class="value"><div class="ic">📞</div><h3>Echte Menschen</h3><p>Support rund um die Uhr per WhatsApp – kein Ticket-System, keine Warteschleife.</p></div>
       </div>
     </div>
   </section>
 
   <!-- ===================== TEAM ===================== -->
-  <section id="team" class="soft">
-    <div class="container">
-      <p class="eyebrow">Die Menschen hinter PayPoint</p>
-      <h2>Unser Team</h2>
-      <p class="lead">Klein, schnell und direkt am Kunden.</p>
+  <section class="team" id="team">
+    <div class="wrap">
+      <p class="kicker">Die Menschen hinter PayPoint</p>
+      <h2>Klein, schnell, nah dran</h2>
+      <div class="team-grid">
 
-      <div class="grid team-grid" style="margin-top:34px;">
-
-        <!-- ===== TEAM-MITGLIED 1 ===== -->
-        <div class="member">
-          <!-- BILD EINFÜGEN: ersetze <span>Foto…</span> durch:
-               <img src="images/mearag.jpg" alt="Mearag El Nasr"> -->
-          <div class="photo"><span>Foto hier einfügen</span></div>
-          <div class="member-body">
+        <!-- ===== PERSON 1 ===== -->
+        <div class="person">
+          <!-- BILD EINFÜGEN: <img src="images/mearag.jpg" alt="Mearag El Nasr"> statt <span>…</span> -->
+          <div class="face"><span>Foto hier einfügen</span></div>
+          <div class="body">
             <h3>Mearag El Nasr</h3>
-            <div class="member-role">Gründer &amp; Geschäftsführer</div>
+            <div class="role">Gründer &amp; Geschäftsführer</div>
             <p>BEARBEITEN: kurzer Satz zur Person.</p>
           </div>
         </div>
 
-        <!-- ===== TEAM-MITGLIED 2 (Block kopieren für mehr Personen) ===== -->
-        <div class="member">
-          <div class="photo"><span>Foto hier einfügen</span></div>
-          <div class="member-body">
+        <!-- ===== PERSON 2 (Block kopieren für mehr) ===== -->
+        <div class="person">
+          <div class="face"><span>Foto hier einfügen</span></div>
+          <div class="body">
             <h3>Name 2</h3>
-            <div class="member-role">Rolle / Position</div>
+            <div class="role">Rolle / Position</div>
             <p>BEARBEITEN: kurzer Satz zur Person.</p>
           </div>
         </div>
 
-        <!-- ===== TEAM-MITGLIED 3 ===== -->
-        <div class="member">
-          <div class="photo"><span>Foto hier einfügen</span></div>
-          <div class="member-body">
+        <!-- ===== PERSON 3 ===== -->
+        <div class="person">
+          <div class="face"><span>Foto hier einfügen</span></div>
+          <div class="body">
             <h3>Name 3</h3>
-            <div class="member-role">Rolle / Position</div>
+            <div class="role">Rolle / Position</div>
             <p>BEARBEITEN: kurzer Satz zur Person.</p>
           </div>
         </div>
@@ -331,39 +329,47 @@ footer a:hover{color:#fff;}
     </div>
   </section>
 
+  <!-- ===================== GRÜNDER-ZITAT ===================== -->
+  <section class="founder">
+    <div class="wrap">
+      <div class="founder-box">
+        <!-- BILD EINFÜGEN: <img src="images/gruender.jpg" alt="Mearag El Nasr"> statt <span>…</span> -->
+        <div class="founder-face"><span>Foto hier einfügen</span></div>
+        <div>
+          <!-- BEARBEITEN: Gründer-Zitat -->
+          <blockquote>„Ich wollte ein Werkzeug, das in der Realität funktioniert – wenn’s laut, voll und stressig ist. Genau das ist PayPoint.“</blockquote>
+          <div class="sig"><strong>Mearag El Nasr</strong> · Gründer von PayPoint</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== TESTIMONIALS ===================== -->
-  <section>
-    <div class="container">
-      <p class="eyebrow">Was unsere Kunden sagen</p>
+  <section class="voices">
+    <div class="wrap">
+      <p class="kicker">Was unsere Kunden sagen</p>
       <h2>Stimmen aus der Gastro</h2>
+      <div class="voices-grid">
 
-      <div class="grid grid-2" style="margin-top:34px;">
-
-        <!-- ===== TESTIMONIAL 1 (Block kopieren für mehr) ===== -->
-        <div class="quote">
+        <!-- ===== STIMME 1 (Block kopieren für mehr) ===== -->
+        <div class="voice">
           <div class="stars">★★★★★</div>
           <!-- BEARBEITEN: Zitat -->
           <blockquote>„Endlich nur noch ein Gerät statt fünf Tablets. Spart uns jeden Abend Nerven.“</blockquote>
-          <div class="quote-author">
-            <!-- BILD EINFÜGEN: ersetze <span>M</span> durch <img src="images/kunde1.jpg" alt=""> -->
-            <div class="avatar"><span>M</span></div>
-            <div>
-              <div class="who">Vorname Nachname</div>
-              <div class="where">Restaurant-Name, Stadt</div>
-            </div>
+          <div class="who-row">
+            <!-- BILD EINFÜGEN: <img src="images/kunde1.jpg" alt=""> statt <span>M</span> -->
+            <div class="av"><span>M</span></div>
+            <div><div class="who">Vorname Nachname</div><div class="where">Restaurant-Name, Stadt</div></div>
           </div>
         </div>
 
-        <!-- ===== TESTIMONIAL 2 ===== -->
-        <div class="quote">
+        <!-- ===== STIMME 2 ===== -->
+        <div class="voice">
           <div class="stars">★★★★★</div>
           <blockquote>„BEARBEITEN: Zitat des Kunden hier einfügen.“</blockquote>
-          <div class="quote-author">
-            <div class="avatar"><span>A</span></div>
-            <div>
-              <div class="who">Vorname Nachname</div>
-              <div class="where">Restaurant-Name, Stadt</div>
-            </div>
+          <div class="who-row">
+            <div class="av"><span>A</span></div>
+            <div><div class="who">Vorname Nachname</div><div class="where">Restaurant-Name, Stadt</div></div>
           </div>
         </div>
 
@@ -372,26 +378,24 @@ footer a:hover{color:#fff;}
   </section>
 
   <!-- ===================== CTA ===================== -->
-  <section>
-    <div class="container">
-      <div class="cta">
-        <h2>Lust, PayPoint kennenzulernen?</h2>
-        <p class="lead">30 Tage kostenlos testen · monatlich kündbar · keine neue Hardware nötig.</p>
-        <div style="margin-top:24px;">
-          <a href="/kontakt" class="btn btn-primary">Jetzt starten</a>
-        </div>
+  <section class="cta">
+    <div class="wrap">
+      <div class="cta-box">
+        <h2>Werde Teil der PayPoint-Familie</h2>
+        <p>30 Tage kostenlos testen · monatlich kündbar · keine neue Hardware nötig.</p>
+        <a href="/kontakt" class="btn btn-primary">Jetzt starten</a>
       </div>
     </div>
   </section>
 
   <!-- ===================== FOOTER ===================== -->
   <footer>
-    <div class="container">
-      <div class="foot-grid">
+    <div class="wrap">
+      <div class="foot">
         <div style="max-width:300px;">
-          <div class="brand" style="font-size:18px;"><span class="logo">☕</span> PayPoint</div>
+          <div class="logo" style="font-size:18px;"><span class="mark">☕</span> PayPoint</div>
           <p style="font-size:14px; margin-top:10px;">Das All-in-One-Kassensystem für Gastronomie &amp; Lieferdienste.</p>
-          <div class="socials">
+          <div class="soc">
             <a href="https://www.instagram.com/get_paypoint.de/" target="_blank" rel="noopener">Instagram</a>
             <a href="https://www.facebook.com/paypointpos" target="_blank" rel="noopener">Facebook</a>
             <a href="https://de.linkedin.com/in/mearag-el-nasr-594a283b7" target="_blank" rel="noopener">LinkedIn</a>
@@ -412,7 +416,7 @@ footer a:hover{color:#fff;}
           <a href="/agb">AGB</a>
         </div>
       </div>
-      <div class="copyright">© <span id="year"></span> PayPoint POS UG (haftungsbeschränkt). Alle Rechte vorbehalten.</div>
+      <div class="copy">© <span id="year"></span> PayPoint POS UG (haftungsbeschränkt). Alle Rechte vorbehalten.</div>
     </div>
   </footer>
 
